@@ -1,0 +1,5 @@
+#exclude general
+*.bak
+*.tmp
+*.orig
+*.err
