@@ -6,6 +6,8 @@ By Jim Nelson and Matt Slay
 
 ![](ObjectExplorer.png)
 
+*From Jim Nelson:*
+
 In honor of my very good friend, the late Matt Slay, I want to share the last tool we collaborated on.
 
 The tool is not actually our concept at all, as it derives from two other tools that have been in the community for a long time (see the original message, below, that got us started.)
@@ -27,8 +29,11 @@ We find that this is invaluable in Production; it also works in IDE the same way
 There are also some very pleasant unanticipated uses. Try any of these:
 
 * Do Form Explorer_Modal with _Screen
+
 * Using the hotkey over a form in the IDE, such as GoFish, PEMEditor, or Thor, will let you view their insides. Since Explorer is a form as well, you get use it to spy on itself.
+
 * Using the hotkey over a form or class you are editing in the IDE works like a reduced-function version of the Properties Window or PEMEditor. A curiosity, maybe, but navigation is easy and so is modifying properties.
+
 * Make the following little piece of code available in your app (for me, available from a context menu available only to Devs). It created a collection of ALL your open forms to browse.
 
     ```
@@ -42,15 +47,25 @@ There are also some very pleasant unanticipated uses. Try any of these:
     ```
 
 A few technical notes:
+
 * This does not depend on Thor being installed (amazing, eh?)
+
 * The three files in this release are intended to be self-contained and have no external references.
+
 * The VCX is the base which Matt and I worked on and shared. (If anybody were to make changes to share with the group, they should be in the VCX)
+
 * The SCXs are our forms where we customized the base VCX as desired.
+
 * I always use the modal form in production. (Use the modeless form at your own risk.) You may well choose to change some of the native form settings as appropriate for your environment.
+
 * Nodes are added to the TreeView only when you expand a parent node.
+
 * The grid on the right is recreated each time you click a node.
+
 * The filter box finds all matches in either the property name or value.
+
 * There is a browse button at the bottom left, available if Explorer (known as Dora to her friends) can determine the cursor related to the current node (such as a grid or column in a grid)
+
 * There are a number of properties and methods, in both the form and its main object "TreeContainer", available for customization. These are easily accessed using PEMEditor, as they are are Local. There's a description field for each.
 
     ![](PEMEditor.png)
@@ -59,7 +74,7 @@ A few technical notes:
 
 One last thing: a hidden UI feature is the ability to edit properties by double-clicking in the value column of the grid. You can also view and edit properties of arrays the same way.
 
-From Matt Slay, Nov 18, 2017:
+*From Matt Slay, Nov 18, 2017:*
 
 I've always used Tamar Granor's Object Inspector in my deployed app in a hidden way, in that on from any CRUD forms, I can right click on the icon in the upper left of the form, and I can use the Object Inspector to see everything on the MainBO, which, is a *lot* of automatically populated stuff from my wwBusinessPro trickery.  I find this helpful to dig around on some of the data that is probably on the data objects but may not be display on the forms, and sometimes I need that data for various reasons.
 
