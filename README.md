@@ -76,7 +76,7 @@ One last thing: a hidden UI feature is the ability to edit properties by double-
 
 *From Matt Slay, Nov 18, 2017:*
 
-I've always used Tamar Granor's Object Inspector in my deployed app in a hidden way, in that on from any CRUD forms, I can right click on the icon in the upper left of the form, and I can use the Object Inspector to see everything on the MainBO, which, is a *lot* of automatically populated stuff from my wwBusinessPro trickery.  I find this helpful to dig around on some of the data that is probably on the data objects but may not be display on the forms, and sometimes I need that data for various reasons.
+I've always used Tamar Granor's [Object Inspector](https://github.com/VFPX/ObjectInspector) in my deployed app in a hidden way, in that on from any CRUD forms, I can right click on the icon in the upper left of the form, and I can use the Object Inspector to see everything on the MainBO, which, is a *lot* of automatically populated stuff from my wwBusinessPro trickery.  I find this helpful to dig around on some of the data that is probably on the data objects but may not be display on the forms, and sometimes I need that data for various reasons.
 
 Anyway, I have this one BO that Object Inspector chokes on when it parses the object to fetch all the data to show on the form. I racked by brain and screwed around with my BO for a couple of hours thinking it was some junk I had in my object hierarchy. I never could figure it out. It caused "a too many nested do loops " error on my BO for some reason that did not happen at run time, and I could not cause the same error on that BO from the command window, no matter what I tried to call or invoke.
 
