@@ -2,6 +2,8 @@
 
 By Jim Nelson and Matt Slay
 
+*Provides an explorer form to view members of the specified object.*
+
 ![](ObjectExplorer.png)
 
 In honor of my very good friend, the late Matt Slay, I want to share the last tool we collaborated on.
@@ -72,3 +74,19 @@ One cool thing about his tool is that it is only one single SCX form. No classli
 I've also added some other functionality, like if one of the property values in the grid is a cursor name, you can double-click on it to browse that cursor. Tthe tools runs against the current data session that it was called from, so it can see and browse those cursors with double-click. (All of my child BO's store the cursor name in a property, and there are other cursor names references in other properties, so it's handy to fire off a Browse from any cursor name.)
 
 I also renamed this tool to Object Explorer (not to be confused with Tamar's Object Inspector).
+
+## Releases
+
+### 2022-02-28
+
+* Initial release: Jim and Matt's original version plus the following changes by Doug Hennig:
+
+    * TreeContainer.NewNode: accept toParentNode and use the appropriate version of Nodes.Add if it's an object. This change (and the next one) prevents cashing for some objects (the TreeView was getting cranky when changing the Parent property of a node).
+
+    * TreeContainer.LoadObject and LoadOtherObject: call NewNode rather than using their own Nodes.Add calls.
+
+    * TreeContainer.NavigateToObject: specifically set loNode.Expanded to .T. because calling Expand doesn't necessary do that, also call loNode.EnsureVisible to ensure the TreeView is scrolled to the node. This fixes an issue with not automatically selecting the correct object in the TreeView at startup: the form was selected rather than the object, although the grid showed the properties for the correct object.
+
+    * TreeContainer.InputBox: use InputBox_ShowWindow1 if the form is in a top-level form, not if it's modal. This change (and the next one) allows Object Explorer to be used in apps with _screen.Visible set to .F. and using top-level forms.
+
+    * InputBox_ShowWindow1: set Desktop to .T. This doesn't affect apps with _screen.Visible =  .T. but does allow it to work when it's .F.
