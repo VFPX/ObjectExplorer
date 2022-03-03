@@ -92,6 +92,14 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 
 ## Releases
 
+### 2022-03-03
+
+* Changed hard-coded "explorer.vcx" in NEWOBJECT() statements to This.ClassLibrary so pathing isn't an issue.
+
+* Set AllowOutput to .F. in forms.
+
+* Added support for Thor Check For Updates.
+
 ### 2022-02-28
 
 * Initial release: Jim and Matt's original version plus the following changes by Doug Hennig:

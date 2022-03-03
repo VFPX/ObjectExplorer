@@ -1,0 +1,5 @@
+lparameters toUpdateObject
+local ldDate
+ldDate = date()
+toUpdateObject.AvailableVersion = 'APPNAME-MAJORVERSION-update-' + dtoc(ldDate, 1)
+return toUpdateObject
