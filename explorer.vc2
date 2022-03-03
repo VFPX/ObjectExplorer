@@ -308,6 +308,25 @@ DEFINE CLASS frmexplorer AS form
 			.Width	= .GetSavedProperty('Width',  .Width)
 			.Height	= .GetSavedProperty('Height', .Height)
 		
+		*** DH 2022-03-03: ensure the form is visible
+			local lnBottom, ;
+				lnRight
+			lnBottom = .Top  + .Height
+			lnRight  = .Left + .Width
+			do case
+				case .ShowWindow = 2 or .Desktop
+				case .ShowWindow = 0 and (not between(lnBottom, .Height, _screen.Height) or ;
+					not between(lnRight, .Width, _screen.Width))
+					store 0 to .Top, .Left
+				case .ShowWindow = 1 and (type('_screen.ActiveForm') = 'O' and ;
+					(not between(lnBottom, .Height, _screen.ActiveForm.Height) or ;
+					not between(lnRight, .Width, _screen.ActiveForm.Width)) or ;
+					not between(lnBottom, .Height, _screen.Height) or ;
+					not between(lnRight, .Width, _screen.Width))
+					store 0 to .Top, .Left
+			endcase
+		*** DH 2022-03-03: end of new code
+		
 			.Treecontainer.lShowNative	   = .GetSavedProperty('ShowNative',     .T.)
 			.Treecontainer.lShowInherited  = .GetSavedProperty('ShowInherited',  .T.)
 			.Treecontainer.lShowCustom	   = .GetSavedProperty('ShowCustom',     .T.)

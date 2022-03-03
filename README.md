@@ -98,6 +98,8 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 
 * Set AllowOutput to .F. in forms.
 
+* Ensure the explorer form is visible by being positioned within _screen or the active form, depending on the setting of ShowWindow.
+
 * Added support for Thor Check For Updates.
 
 ### 2022-02-28
