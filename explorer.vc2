@@ -694,6 +694,7 @@ DEFINE CLASS treecontainer AS container
 		*m: navigatetoobject
 		*m: newnode		&& Adds an empty node to the treeview.
 		*m: ocurrentnode_access
+		*m: onobjectreleased		&& Fired when the object being explored is released
 		*m: pemstatusfails
 		*m: refreshgrid
 		*m: resizecontrols
@@ -861,6 +862,7 @@ DEFINE CLASS treecontainer AS container
 		<memberdata name="getbrowsecursorname" display="GetBrowseCursorName" favorites="True"/>
 		<memberdata name="nbrowsedatasessionid" display="nBrowseDataSessionID"/>
 		<memberdata name="logchange" display="LogChange" favorites="True"/>
+		<memberdata name="onobjectreleased" display="OnObjectReleased"/>
 		</VFPData>		&& XML Metadata for customizable properties
 
 	ADD OBJECT 'cmdBrowse' AS commandbutton WITH ;
@@ -996,7 +998,7 @@ DEFINE CLASS treecontainer AS container
 		Name = "oleTree", ;
 		Top = 8, ;
 		Width = 199
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABfrOUUL9gBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAkTwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAJiR8QACAGUAAAAAAAUAAIBA6RkAAQAAAFwAH97svQEABQCI6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDP00jVL9gBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAkTwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAKBr1AACAGUAAAAAAAUAAIBA6RkAAQAAAFwAH97svQEABQCI6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
 
 	ADD OBJECT 'oPropGrid' AS grid WITH ;
 		Anchor = 45, ;
@@ -1473,6 +1475,14 @@ DEFINE CLASS treecontainer AS container
 		lcAlias		  = ''
 		lnDataSession = 0
 		Do Case
+		*** DH 2022-03-04: handle no object
+			* object not found or released
+		    case isnull(m.loCurrentObject)
+				messagebox('The selected object no longer exists. Object Explorer will close.', ;
+					0 + 16, Thisform.Caption)
+				Thisform.Release()
+		*** DH 2022-03-04: end of new code
+		
 				* current node has own data session and cAlias
 			Case Pemstatus(m.loCurrentObject, 'DataSessionID', 5)
 				If Pemstatus(m.loCurrentObject, 'cAlias', 5)
@@ -1502,8 +1512,6 @@ DEFINE CLASS treecontainer AS container
 			Case Pemstatus(m.loTopObject, 'cAlias', 5)
 				lcAlias		  =  m.loTopObject.cAlias
 				lnDataSession = m.loTopObject.DataSessionId
-		
-		
 		Endcase
 		
 		This.nBrowseDataSessionID = m.lnDataSession
@@ -1760,6 +1768,8 @@ DEFINE CLASS treecontainer AS container
 		
 			If Isnull(.oFirstObject)
 				.oFirstObject = m.toObject
+		*** DH 2022-03-03: bind to QueryUnload so closing the form works
+				bindevent(.oFirstObject, 'QueryUnload', This, 'OnObjectReleased')
 				.oleTree.Nodes.Clear()
 			Endif
 		
@@ -1995,6 +2005,13 @@ DEFINE CLASS treecontainer AS container
 		
 		Return Null
 		
+		
+	ENDPROC
+
+	PROCEDURE onobjectreleased		&& Fired when the object being explored is released
+		*** DH 2022-03-03: added this method, which is bound to QueryUnload by
+		***		LoadObject so closing the form works
+		Thisform.Release()
 		
 	ENDPROC
 

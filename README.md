@@ -92,6 +92,10 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 
 ## Releases
 
+### 2022-03-04
+
+* Automatically closes when the object being explored is released, and no longer prevents the object from being released
+
 ### 2022-03-03
 
 * Changed hard-coded "explorer.vcx" in NEWOBJECT() statements to This.ClassLibrary so pathing isn't an issue.
