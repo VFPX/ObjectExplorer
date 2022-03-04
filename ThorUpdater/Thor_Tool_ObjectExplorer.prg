@@ -18,7 +18,7 @@ If Pcount() = 1						  ;
 		.PRGName            = 'Thor_Tool_ObjectExplorer' && a unique name for the tool; note the required prefix
 
 		* Optional 
-		.FolderName         = 'D:\DEVELOPMENT\TOOLS\THOR\Thor\Tools\Apps\Object Explorer\' && folder name for APP   
+		.FolderName         = 'D:\DEVELOPMENT\TOOLS\THOR\Thor\Tools\Apps\ObjectExplorer\' && folder name for APP   
 		.CanRunAtStartup    = .F. 
 
 		* For public tools, such as PEM Editor, etc.
@@ -41,5 +41,5 @@ Return
 * Normal processing for this tool begins here.                  
 Procedure ToolCode
     Lparameters lxParam1
-do form ('D:\DEVELOPMENT\TOOLS\THOR\Thor\Tools\Apps\Object Explorer\Explorer.scx') with sys(1270)
+do form ('D:\DEVELOPMENT\TOOLS\THOR\Thor\Tools\Apps\ObjectExplorer\Explorer.scx') with sys(1270)
 EndProc 

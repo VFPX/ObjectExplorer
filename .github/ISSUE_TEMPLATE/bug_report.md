@@ -10,8 +10,7 @@ assignees: ''
 ## ℹ Computer information
 
 - VFP version: 
-- FoxBin2PRG version:
-- Last FoxBin2PRG version w/o bug (if available):
+- ObjectExplorer version: 
 
 ## 📝 Provide detailed reproduction steps (if any)
 
