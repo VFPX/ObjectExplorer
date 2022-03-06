@@ -91,6 +91,6 @@ local lcNotes
 text to lcNotes noshow
 Object Explorer
 
-Project Explorer Provides an explorer form to view members of the specified object.
+Provides an explorer form to view members of the specified object.
 endtext
 return lcNotes
