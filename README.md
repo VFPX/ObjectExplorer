@@ -119,3 +119,9 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
     * TreeContainer.InputBox: use InputBox_ShowWindow1 if the form is in a top-level form, not if it's modal. This change (and the next one) allows Object Explorer to be used in apps with _screen.Visible set to .F. and using top-level forms.
 
     * InputBox_ShowWindow1: set Desktop to .T. This doesn't affect apps with _screen.Visible =  .T. but does allow it to work when it's .F.
+
+----
+## Contribution
+See [contribution](./.github/CONTRIBUTING.md)
+
+Last changed: _2022/03/04 ![Picture](./docs/pictures/vfpxpoweredby_alternative.gif)
