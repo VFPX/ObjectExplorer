@@ -92,6 +92,10 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 
 ## Releases
 
+### 2022-04-02
+
+* Fixes a bug with null nodes, such as with an object based on Empty or Control.
+
 ### 2022-03-04
 
 * Automatically closes when the object being explored is released, and no longer prevents the object from being released
