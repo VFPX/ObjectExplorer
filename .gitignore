@@ -14,7 +14,7 @@
 
 # VFP backup files
 *.bak
-*.BAK
+*.BAK 
 *.tbk
 *.TBK
 

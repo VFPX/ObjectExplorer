@@ -16,8 +16,9 @@ Here are the steps to updating to a new version:
 1. Please create a fork at github
    - See this [guide](https://www.dataschool.io/how-to-contribute-on-github/) for setting up and using a fork
 2. Make whatever changes are necessary.
+2. Run FoxBin2Prg to create the text files.
+   - `DO foxbin2prg.prg WITH 'BIN2PRG','*.*'`
 2. Set version and date in property _cVersion_ in class _treecontainer of explorer.vcx_, 
-2. run FoxBin2Prg to create the text files.
 5. Update the version number at the top of _README.md_ and describe the changes in the What's New section near the bottom.
 6. Please alter the footer of \*.md files touched to recent date.
 1. Change Thor (see below)
