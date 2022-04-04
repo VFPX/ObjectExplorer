@@ -92,6 +92,10 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 
 ## Releases
 
+### 2022-04-04
+
+* Updated the download zip file so it works with Thor Check for Updates.
+
 ### 2022-04-03
 
 * Fixes a bug with an object based on Control in a running form and updates the displayed version number.
