@@ -92,6 +92,10 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 
 ## Releases
 
+### 2022-05-22, Version 3.3.3
+
+* Add a TRY in TreeContainer.Init so no error if _Screen.oISXOptions.oKeyWordList doesn't exist
+
 ### 2022-04-04
 
 * Updated the download zip file so it works with Thor Check for Updates.

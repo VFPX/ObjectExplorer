@@ -1,7 +1,7 @@
-# How to contribute to Thor
+# How to contribute to Object Explorer
 
 ## Bug report?
-- Please check [issues](https://github.com/VFPX/Thor/issues) if the bug is reported
+- Please check [issues](https://github.com/VFPX/ObjectExplorer/issues) if the bug is reported
 - If you're unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.
 
 ### Did you write a patch that fixes a bug?
@@ -19,22 +19,14 @@ Here are the steps to updating to a new version:
 2. Run FoxBin2Prg to create the text files.
    - `DO foxbin2prg.prg WITH 'BIN2PRG','*.*'`
 2. Set version and date in property _cVersion_ in class _treecontainer of explorer.vcx_, 
-5. Update the version number at the top of _README.md_ and describe the changes in the What's New section near the bottom.
-6. Please alter the footer of \*.md files touched to recent date.
-1. Change Thor (see below)
-9. commit
-9. push to your fork
-0. create a pull request
-
-## Thor conventions
-This project is part of [VFPX](https://vfpx.github.io/) and published via [Thor](https://github.com/VFPX/Thor).   
-There are some considerations to make to add a new version to Thor.   
-In Folder _.\ThorUpdater_
-- _ObjectExplorerVersion.txt_ set up version information and brief list of changes
-- _ObjectExplorer.zip_
-  - add sources changed, please only the binaries
-
-Thanks
+5. Describe the changes in the What's New section near the bottom of _README.md_.
+6. Alter the footer of \*.md files touched to recent date.
+7. In the _.\ThorUpdater_ folder:
+* Edit the majorVersion setting in Project.txt
+* Right-click CreateThorUpdate.ps1 and select Run with PowerShell from the shortcut menu to update ObjectExplorerVersion.txt and ObjectExplorer.zip
+8. Commit
+9. Push to your fork
+10. Create a pull request
 
 ----
-Last changed: _2022/04/03_ ![Picture](../Docs/Images/vfpxpoweredby_alternative.gif)
+Last changed: _2022/05/22_ ![Picture](../Docs/Images/vfpxpoweredby_alternative.gif)
