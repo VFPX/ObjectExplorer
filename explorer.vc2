@@ -6,7 +6,7 @@
 *
 *
 DEFINE CLASS frmbrowse AS form 
- 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="2022/03/03 09:37:12" Scale="Pixels" Uniqueid="" />
 
 	*<DefinedPropArrayMethod>
 		*p: calias
@@ -96,11 +96,11 @@ DEFINE CLASS frmbrowse AS form
 ENDDEFINE
 
 DEFINE CLASS frmexplorer AS form 
- 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="2022/11/20 15:20:12" Scale="Pixels" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="Treecontainer" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cmdExit" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Treecontainer" UniqueID="" Timestamp="2022/11/20 15:20:12" />
+	*< OBJECTDATA: ObjPath="cmdExit" UniqueID="" Timestamp="2013/11/04 20:00:00" />
 
 	*<DefinedPropArrayMethod>
 		*m: getsavedproperty
@@ -468,17 +468,27 @@ DEFINE CLASS frmexplorer AS form
 		
 	ENDPROC
 
+	PROCEDURE Treecontainer.oleTree.KeyPress
+		*** ActiveX Control Event ***
+		LPARAMETERS keyascii
+		Do Case
+			Case m.keyascii = 27
+				ThisForm.Release()
+		Endcase
+		
+	ENDPROC
+
 ENDDEFINE
 
 DEFINE CLASS inputbox AS form 
- 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="2022/03/03 09:37:19" Scale="Pixels" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="Edit2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Text1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cmdSave" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cmdQuit" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Edit2" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="2022/03/03 09:37:19" />
+	*< OBJECTDATA: ObjPath="Text1" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cmdSave" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cmdQuit" UniqueID="" Timestamp="2013/11/04 20:00:00" />
 
 	*<DefinedPropArrayMethod>
 		*m: saveresult
@@ -628,7 +638,7 @@ DEFINE CLASS inputbox AS form
 ENDDEFINE
 
 DEFINE CLASS inputbox_intlf AS inputbox OF "explorer.vcx" 
- 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="2022/02/27 09:30:29" Scale="Pixels" Uniqueid="" />
 
 	Desktop = .T.
 	DoCreate = .T.
@@ -645,7 +655,7 @@ DEFINE CLASS inputbox_intlf AS inputbox OF "explorer.vcx"
 ENDDEFINE
 
 DEFINE CLASS inputbox_showwindow1 AS inputbox OF "explorer.vcx" 
- 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="2022/02/27 10:05:07" Scale="Pixels" Uniqueid="" />
 
 	Desktop = .T.
 	DoCreate = .T.
@@ -660,22 +670,22 @@ DEFINE CLASS inputbox_showwindow1 AS inputbox OF "explorer.vcx"
 ENDDEFINE
 
 DEFINE CLASS treecontainer AS container 
- 	*< CLASSDATA: Baseclass="container" Timestamp="" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="container" Timestamp="2022/11/17 17:45:25" Scale="Pixels" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="oleTree" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="txtFullPath" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="oPropGrid" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowNative" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowInherited" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowCustom" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowNonDefault" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.lblFilter" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.txtFilter" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklSortFavorites" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cmdBrowse" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="oleTree" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="txtFullPath" UniqueID="" Timestamp="2022/02/06 13:15:09" />
+	*< OBJECTDATA: ObjPath="oPropGrid" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowNative" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowInherited" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowCustom" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowNonDefault" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.lblFilter" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.txtFilter" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklSortFavorites" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="cmdBrowse" UniqueID="" Timestamp="2022/02/06 14:39:25" />
 
 	*<DefinedPropArrayMethod>
 		*m: about
