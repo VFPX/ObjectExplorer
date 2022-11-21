@@ -22,15 +22,9 @@ DEFINE CLASS dora AS frmexplorer OF "explorer.vcx"
 
 	Caption = "Explorer"
 	DoCreate = .T.
-	Left = 0
 	Name = "Dora"
-	nmaxtreeviewwidth = 400
 	ShowWindow = 0
-	Top = 0
-	TREECONTAINER.ccklkeywordtablename = Z:\APPLICATIONS\DATA\LATE PAYS\KEYWORDLIST.DBF
-	TREECONTAINER.cmdBrowse.Left = 11
 	TREECONTAINER.cmdBrowse.Name = "cmdBrowse"
-	TREECONTAINER.cmyfavorites = cAlias, c_SourceFileName, cServer, cDataBase
 	TREECONTAINER.cntCheckBoxes.chklShowCustom.Alignment = 0
 	TREECONTAINER.cntCheckBoxes.chklShowCustom.Name = "chklShowCustom"
 	TREECONTAINER.cntCheckBoxes.chklShowInherited.Alignment = 0
@@ -42,91 +36,17 @@ DEFINE CLASS dora AS frmexplorer OF "explorer.vcx"
 	TREECONTAINER.cntCheckBoxes.chklSortFavorites.Alignment = 0
 	TREECONTAINER.cntCheckBoxes.chklSortFavorites.Name = "chklSortFavorites"
 	TREECONTAINER.cntCheckBoxes.lblFilter.Name = "lblFilter"
-	TREECONTAINER.cntCheckBoxes.Left = 212
 	TREECONTAINER.cntCheckBoxes.Name = "cntCheckBoxes"
 	TREECONTAINER.cntCheckBoxes.txtFilter.Name = "txtFilter"
-	TREECONTAINER.cskippedobjectnames = oObjectExplorer, CurrentColumn, ThisColumn, oColumnDefs
-	TREECONTAINER.cvfpkeywordtablename = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL FOXPRO 9\WIZARDS\FDKEYWRD.dbf
-	TREECONTAINER.Label1.Left = 493
 	TREECONTAINER.Label1.Name = "Label1"
-	TREECONTAINER.laligninputboxtocursor = .T.
-	TREECONTAINER.lshowcaption = .T.
-	TREECONTAINER.lshowcontrolsource = .T.
 	TREECONTAINER.Name = "TREECONTAINER"
-	TREECONTAINER.nfontsize = 9
 	TREECONTAINER.oleTree.Height = 586
 	TREECONTAINER.oleTree.Left = 8
 	TREECONTAINER.oleTree.Name = "oleTree"
 	TREECONTAINER.oleTree.Top = 8
 	TREECONTAINER.oleTree.Width = 199
-	TREECONTAINER.oPropGrid.Left = 212
 	TREECONTAINER.oPropGrid.Name = "oPropGrid"
-	TREECONTAINER.txtFullPath.Left = 110
 	TREECONTAINER.txtFullPath.Name = "txtFullPath"
 	cmdExit.Name = "cmdExit"
-	
-	PROCEDURE TREECONTAINER.getnodetext
-		Lparameters loObject, lcNodeText
-		
-		Local lcCaption, lcControlSource, lcExtraText, lnAT, lnI, loChild
-		
-		lcExtraText = ''
-		
-		If Pemstatus(m.loObject, 'BaseClass', 5) And m.loObject.BaseClass = 'Column'
-			For lnI = 1 To m.loObject.ControlCount
-				loChild = m.loObject.Controls[m.lnI]
-				If Pemstatus(m.loChild, 'BaseClass', 5) And m.loChild.BaseClass = 'Header'
-					lcCaption = AllTrim(Strtran(m.loChild.Caption, Chr[13], ' '))
-					If Not Empty(m.lcCaption)
-						If Pemstatus(m.loObject, 'h_SuperHdgsText', 5) And Not Empty (m.loObject.h_SuperHdgsText[1])
-							lcCaption = m.loObject.h_SuperHdgsText[1] + ' ... ' + m.lcCaption
-						Endif
-						lcExtraText = '"' + m.lcCaption + '"'
-					Endif
-				Endif
-			Endfor
-		
-		Else
-			Do Case
-				Case Pemstatus(m.loObject, 'Caption', 5) And Not Empty(m.loObject.Caption)
-					lcExtraText = '"' + m.loObject.Caption + '"'
-				Case Pemstatus(m.loObject, 'cCaption', 5) And Not Empty(m.loObject.cCaption)
-					lcExtraText = '"' + m.loObject.cCaption + '"'
-			Endcase
-		
-			Do Case
-				Case Pemstatus(m.loObject, 'ControlSource', 5) And Not Empty(m.loObject.ControlSource)
-					lcControlSource	= m.loObject.ControlSource
-					lnAT			= Atc('.odata.', m.lcControlSource)
-					If m.lnAT # 0
-						lcControlSource = Substr(m.lcControlSource, m.lnAT)
-					Endif
-					lcExtraText = m.lcExtraText + Iif(Empty(m.lcExtraText), '', ' - ') + m.lcControlSource
-				Case Pemstatus(m.loObject, 'cControlSource', 5) And Not Empty(m.loObject.cControlSource)
-					lcControlSource	= m.loObject.cControlSource
-					lnAT			= Atc('.odata.', m.lcControlSource)
-					If m.lnAT # 0
-						lcControlSource = Substr(m.lcControlSource, m.lnAT)
-					Endif
-					lcExtraText = m.lcExtraText + Iif(Empty(m.lcExtraText), '', ' - ') + m.lcControlSource
-			Endcase
-		
-			If Pemstatus(m.loObject, 'RecordSource', 5) And Not Empty(m.loObject.RecordSource)
-				lcExtraText = m.loObject.RecordSource
-			Endif
-		
-			If Pemstatus(m.loObject, 'cAlias', 5) And Not Empty(m.loObject.cAlias)
-				lcExtraText = m.loObject.cAlias
-			Endif
-		Endif
-		
-		If Empty(m.lcExtraText)
-			Return m.lcNodeText
-		Else
-			Return m.lcNodeText + ' (' + Alltrim(m.lcExtraText) + ')'
-		Endif
-		
-		
-	ENDPROC
 
 ENDDEFINE
