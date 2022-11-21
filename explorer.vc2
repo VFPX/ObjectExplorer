@@ -6,7 +6,7 @@
 *
 *
 DEFINE CLASS frmbrowse AS form 
- 	*< CLASSDATA: Baseclass="form" Timestamp="2022/03/03 09:37:12" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
 
 	*<DefinedPropArrayMethod>
 		*p: calias
@@ -96,11 +96,11 @@ DEFINE CLASS frmbrowse AS form
 ENDDEFINE
 
 DEFINE CLASS frmexplorer AS form 
- 	*< CLASSDATA: Baseclass="form" Timestamp="2022/11/20 15:20:12" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="Treecontainer" UniqueID="" Timestamp="2022/11/20 15:20:12" />
-	*< OBJECTDATA: ObjPath="cmdExit" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="Treecontainer" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cmdExit" UniqueID="" Timestamp="" />
 
 	*<DefinedPropArrayMethod>
 		*m: getsavedproperty
@@ -481,14 +481,14 @@ DEFINE CLASS frmexplorer AS form
 ENDDEFINE
 
 DEFINE CLASS inputbox AS form 
- 	*< CLASSDATA: Baseclass="form" Timestamp="2022/03/03 09:37:19" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="Edit2" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="2022/03/03 09:37:19" />
-	*< OBJECTDATA: ObjPath="Text1" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cmdSave" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cmdQuit" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="Edit2" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Text1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cmdSave" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cmdQuit" UniqueID="" Timestamp="" />
 
 	*<DefinedPropArrayMethod>
 		*m: saveresult
@@ -638,7 +638,7 @@ DEFINE CLASS inputbox AS form
 ENDDEFINE
 
 DEFINE CLASS inputbox_intlf AS inputbox OF "explorer.vcx" 
- 	*< CLASSDATA: Baseclass="form" Timestamp="2022/02/27 09:30:29" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
 
 	Desktop = .T.
 	DoCreate = .T.
@@ -655,7 +655,7 @@ DEFINE CLASS inputbox_intlf AS inputbox OF "explorer.vcx"
 ENDDEFINE
 
 DEFINE CLASS inputbox_showwindow1 AS inputbox OF "explorer.vcx" 
- 	*< CLASSDATA: Baseclass="form" Timestamp="2022/02/27 10:05:07" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
 
 	Desktop = .T.
 	DoCreate = .T.
@@ -670,22 +670,22 @@ DEFINE CLASS inputbox_showwindow1 AS inputbox OF "explorer.vcx"
 ENDDEFINE
 
 DEFINE CLASS treecontainer AS container 
- 	*< CLASSDATA: Baseclass="container" Timestamp="2022/11/17 17:45:25" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="container" Timestamp="" Scale="Pixels" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="oleTree" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="txtFullPath" UniqueID="" Timestamp="2022/02/06 13:15:09" />
-	*< OBJECTDATA: ObjPath="oPropGrid" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowNative" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowInherited" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowCustom" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowNonDefault" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.lblFilter" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.txtFilter" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklSortFavorites" UniqueID="" Timestamp="2013/11/04 20:00:00" />
-	*< OBJECTDATA: ObjPath="cmdBrowse" UniqueID="" Timestamp="2022/02/06 14:39:25" />
+	*< OBJECTDATA: ObjPath="oleTree" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="txtFullPath" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="oPropGrid" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowNative" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowInherited" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowCustom" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklShowNonDefault" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.lblFilter" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.txtFilter" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cntCheckBoxes.chklSortFavorites" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cmdBrowse" UniqueID="" Timestamp="" />
 
 	*<DefinedPropArrayMethod>
 		*m: about
@@ -780,16 +780,16 @@ DEFINE CLASS treecontainer AS container
 	cfilter = 
 	cmyfavorites = 		&& My custom list of properties that are Favorites (separated by spaces, commas, or new lines)
 	cskippedobjectnames = 		&& List of object names that I want Explorer to Ignore
-	cversion = 3.3.4 - 2022/11/17
+	cversion = 3.3.5 - 2022/11/21
 	cvfpkeywordcursor = 
-	cvfpkeywordtablename = (Home(0) + 'WIZARDS\FDKEYWRD.dbf')		&& Used when Explorer is used and Thor is not in use (presumably, in Production), FoxPro's native table for keyword names
+	cvfpkeywordtablename = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL FOXPRO 9\WIZARDS\FDKEYWRD.dbf		&& Used when Explorer is used and Thor is not in use (presumably, in Production), FoxPro's native table for keyword names
 	Height = 623
-	laligninputboxtocursor = .F.
+	laligninputboxtocursor = .T.
 	lbrowsereadonly = .F.
 	ldblclickreadonly = .F.
 	lfavoritesbold = .T.
-	lshowcaption = .F.		&& Show Caption in treeview node
-	lshowcontrolsource = .F.		&& Show ControlSource in treeview node
+	lshowcaption = .T.		&& Show Caption in treeview node
+	lshowcontrolsource = .T.		&& Show ControlSource in treeview node
 	lshowcustom = .T.		&& Show Custom properties
 	lshowinherited = .T.		&& Show Inherited properties
 	lshowitems = .T.		&& Indicates the items in a collection should be displayed in the tree.
@@ -802,7 +802,7 @@ DEFINE CLASS treecontainer AS container
 	Name = "treecontainer"
 	nbrowsedatasessionid = 0
 	nfavoritesbackcolor = (RGB(255, 255, 128))
-	nfontsize = 0
+	nfontsize = 9
 	nmaxcharacterwidth = 200
 	ocurrentnode = .NULL.
 	ofirstobject = .NULL.		&& Stores an object reference to the top most object in the treeview.
@@ -1021,7 +1021,7 @@ DEFINE CLASS treecontainer AS container
 		Name = "oleTree", ;
 		Top = 8, ;
 		Width = 199
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAmbRrn+tgBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAkTwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFALBBbRICAGUAAAAAAAUAAIBE6RkAAQAAAFwAH97svQEABQCM6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALBOd23Q/dgBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAkTwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFACD4DhICAGUAAAAAAAUAAIBE6RkAAQAAAFwAH97svQEABQCM6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
 
 	ADD OBJECT 'oPropGrid' AS grid WITH ;
 		Anchor = 45, ;
@@ -1506,13 +1506,13 @@ DEFINE CLASS treecontainer AS container
 		lcAlias		  = ''
 		lnDataSession = 0
 		Do Case
-		*** DH 2022-03-04: handle no object
-			* object not found or released
-		    case isnull(m.loCurrentObject)
-				messagebox('The selected object no longer exists. Object Explorer will close.', ;
-					0 + 16, Thisform.Caption)
+				*** DH 2022-03-04: handle no object
+				* object not found or released
+			Case Isnull(m.loCurrentObject)
+				Messagebox('The selected object no longer exists. Object Explorer will close.',			;
+					  0 + 16, Thisform.Caption)
 				Thisform.Release()
-		*** DH 2022-03-04: end of new code
+				*** DH 2022-03-04: end of new code
 		
 				* current node has own data session and cAlias
 			Case Pemstatus(m.loCurrentObject, 'DataSessionID', 5)
@@ -1535,7 +1535,7 @@ DEFINE CLASS treecontainer AS container
 				lnDataSession = m.loTopObject.DataSessionId
 		
 				* current node is a column in a grid and has RecordSource in data session for top object
-			Case Pemstatus(m.loCurrentObject, 'BaseClass', 5) And Upper(m.loCurrentObject.BaseClass) = 'COLUMN'
+			Case Pemstatus(m.loCurrentObject, 'BaseClass', 5) And Not Pemstatus(m.loCurrentObject, 'BaseClass', 2) And Upper(m.loCurrentObject.BaseClass) = 'COLUMN'
 				lcAlias		  =  m.loCurrentObject.Parent.RecordSource
 				lnDataSession = m.loTopObject.DataSessionId
 		
@@ -1580,16 +1580,56 @@ DEFINE CLASS treecontainer AS container
 	PROCEDURE getnodetext		&& For objects other than collections, returns the caption to be used for nodes in the TreeView
 		Lparameters loObject, lcNodeText
 		
-		Local lcControlSource, lcExtraText
+		Local lcCaption, lcControlSource, lcExtraText, lnAT, lnI, loChild
+		
 		lcExtraText = ''
 		
-		If This.lShowCaption And Pemstatus(m.loObject, 'Caption', 5) And Not Empty(m.loObject.Caption)
-			lcExtraText = ' "' + m.loObject.Caption + '"'
-		Endif
+		If Pemstatus(m.loObject, 'BaseClass', 5) And Not Pemstatus(m.loObject, 'BaseClass', 2) And m.loObject.BaseClass = 'Column'
+			For lnI = 1 To m.loObject.ControlCount
+				loChild = m.loObject.Controls[m.lnI]
+				If Pemstatus(m.loChild, 'BaseClass', 5) And Not Pemstatus(m.loChild, 'BaseClass', 2) And m.loChild.BaseClass = 'Header'
+					lcCaption = AllTrim(Strtran(m.loChild.Caption, Chr[13], ' '))
+					If Not Empty(m.lcCaption)
+						If Pemstatus(m.loObject, 'h_SuperHdgsText', 5) And Not Empty (m.loObject.h_SuperHdgsText[1])
+							lcCaption = m.loObject.h_SuperHdgsText[1] + ' ... ' + m.lcCaption
+						Endif
+						lcExtraText = '"' + m.lcCaption + '"'
+					Endif
+				Endif
+			Endfor
 		
-		If This.lShowControlSource And Pemstatus(m.loObject, 'ControlSource', 5) And Not Empty(m.loObject.ControlSource)
-			lcControlSource	= m.loObject.ControlSource
-			lcExtraText		= m.lcExtraText + ' [' + m.lcControlSource + ']'
+		Else
+			Do Case
+				Case Pemstatus(m.loObject, 'Caption', 5) And Not Empty(m.loObject.Caption)
+					lcExtraText = '"' + m.loObject.Caption + '"'
+				Case Pemstatus(m.loObject, 'cCaption', 5) And Not Empty(m.loObject.cCaption)
+					lcExtraText = '"' + m.loObject.cCaption + '"'
+			Endcase
+		
+			Do Case
+				Case Pemstatus(m.loObject, 'ControlSource', 5) And Not Empty(m.loObject.ControlSource)
+					lcControlSource	= m.loObject.ControlSource
+					lnAT			= Atc('.odata.', m.lcControlSource)
+					If m.lnAT # 0
+						lcControlSource = Substr(m.lcControlSource, m.lnAT)
+					Endif
+					lcExtraText = m.lcExtraText + Iif(Empty(m.lcExtraText), '', ' - ') + m.lcControlSource
+				Case Pemstatus(m.loObject, 'cControlSource', 5) And Not Empty(m.loObject.cControlSource)
+					lcControlSource	= m.loObject.cControlSource
+					lnAT			= Atc('.odata.', m.lcControlSource)
+					If m.lnAT # 0
+						lcControlSource = Substr(m.lcControlSource, m.lnAT)
+					Endif
+					lcExtraText = m.lcExtraText + Iif(Empty(m.lcExtraText), '', ' - ') + m.lcControlSource
+			Endcase
+		
+			If Pemstatus(m.loObject, 'RecordSource', 5) And Not Empty(m.loObject.RecordSource)
+				lcExtraText = m.loObject.RecordSource
+			Endif
+		
+			If Pemstatus(m.loObject, 'cAlias', 5) And Not Empty(m.loObject.cAlias)
+				lcExtraText = m.loObject.cAlias
+			Endif
 		Endif
 		
 		If Empty(m.lcExtraText)
