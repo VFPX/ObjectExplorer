@@ -1,5 +1,5 @@
 lparameters toUpdateObject
 local ldDate
-ldDate = date(2022,5,22)
-toUpdateObject.AvailableVersion = 'Object Explorer-3.3.3-update-' + dtoc(ldDate, 1)
+ldDate = date(2022,11,23)
+toUpdateObject.AvailableVersion = 'Object Explorer-3.3.6-update-' + dtoc(ldDate, 1)
 return toUpdateObject
