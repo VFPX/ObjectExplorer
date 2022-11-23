@@ -92,6 +92,12 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 
 ## Releases
 
+### 2022-11-23, Version 3.3.6
+
+* Double click now works on any column in the grid to edit property values.  
+* Right-click on grid row brings up context menu to edit property (same as double-click) or to toggle whether the property is a favorite
+* New checkbox for whether favorites are highlighted (with yellow highlighter)
+
 ### 2022-05-22, Version 3.3.3
 
 * Add a TRY in TreeContainer.Init so no error if _Screen.oISXOptions.oKeyWordList doesn't exist
@@ -140,4 +146,4 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 ## Contribution
 See [contribution](./.github/CONTRIBUTING.md)
 
-Last changed: _2022/04/03 ![Picture](./docs/pictures/vfpxpoweredby_alternative.gif)
+Last changed: _2022/11/23 ![Picture](./docs/pictures/vfpxpoweredby_alternative.gif)
