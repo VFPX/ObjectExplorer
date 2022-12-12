@@ -10,6 +10,14 @@ $excludeFiles = $exclude.Split(',')
 $exclude = $appInfo[4].Substring($appInfo[4].IndexOf('=') + 1).Trim()
 $excludeFolders = $exclude.Split(',')
 
+# -------------------------------------------------
+# JRN 2022-12-11 Create the Version.txt from pieces
+$VersionFile = 'Version.txt'
+cat VersionHeader.txt  >  $VersionFile
+cat '..\Change Log.md' >> $VersionFile
+cat VersionFooter.txt  >> $VersionFile
+# -------------------------------------------------
+
 # Get the name of the zip file.
 $zipFileName = "ThorUpdater\$appID.zip"
 

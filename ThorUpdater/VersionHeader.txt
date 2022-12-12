@@ -1,0 +1,12 @@
+lparameters toUpdateObject
+local ldDate
+ldDate = date()
+toUpdateObject.AvailableVersion = 'APPNAME-MAJORVERSION-update-' + dtoc(ldDate, 1)
+AddProperty(toUpdateObject, 'Notes', GetReleaseNotes())
+
+return toUpdateObject
+
+
+Procedure GetReleaseNotes
+
+Text to lcNote NoShow
