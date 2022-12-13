@@ -96,10 +96,10 @@ DEFINE CLASS frmbrowse AS form
 ENDDEFINE
 
 DEFINE CLASS frmexplorer AS form 
- 	*< CLASSDATA: Baseclass="form" Timestamp="2022/11/23 12:20:13" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="form" Timestamp="2022/12/12 07:59:15" Scale="Pixels" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="Treecontainer" UniqueID="" Timestamp="2022/11/23 12:20:13" />
+	*< OBJECTDATA: ObjPath="Treecontainer" UniqueID="" Timestamp="2022/12/12 07:59:15" />
 	*< OBJECTDATA: ObjPath="cmdExit" UniqueID="" Timestamp="2013/11/04 20:00:00" />
 
 	*<DefinedPropArrayMethod>
@@ -113,6 +113,7 @@ DEFINE CLASS frmexplorer AS form
 		*m: setdatasession
 		*p: cdefaultfavorites
 		*p: cformname
+		*p: cpublicvariable
 		*p: csettingsfilename
 		*p: nmaxtreeviewwidth
 		*p: _memberdata		&& XML Metadata for customizable properties
@@ -122,6 +123,7 @@ DEFINE CLASS frmexplorer AS form
 	Caption = "Explorer"
 	cdefaultfavorites = caption, controlsource, recordsource, baseclass, class, classlibrary, parentclass, top, left, width, height, text, value, enabled, visible, rowsource, rowsourcetype, datasessionid
 	cformname = 
+	cpublicvariable = 
 	csettingsfilename = (Addbs(Sys(2023)) + 'ExplorerSettings.dbf')
 	DataSession = 2
 	DoCreate = .T.
@@ -147,6 +149,7 @@ DEFINE CLASS frmexplorer AS form
 		<memberdata name="nmaxtreeviewwidth" display="nMaxTreeViewWidth" favorites="True"/>
 		<memberdata name="cformname" display="cFormName"/>
 		<memberdata name="cdefaultfavorites" display="cDefaultFavorites"/>
+		<memberdata name="cpublicvariable" display="cPublicVariable"/>
 		</VFPData>		&& XML Metadata for customizable properties
 
 	ADD OBJECT 'cmdExit' AS commandbutton WITH ;
@@ -193,8 +196,18 @@ DEFINE CLASS frmexplorer AS form
 		*< END OBJECT: ClassLib="explorer.vcx" BaseClass="container" />
 	
 	PROCEDURE Destroy
+		Local lcPublicVariable, loException
+		
 		This.SaveSettings()
 		
+		lcPublicVariable = This.cPublicVariable
+		If Not Empty(m.lcPublicVariable)
+			Try
+				Release  &lcPublicVariable
+			Catch To m.loException
+		
+			Endtry
+		Endif
 	ENDPROC
 
 	PROCEDURE getsavedproperty
@@ -221,7 +234,7 @@ DEFINE CLASS frmexplorer AS form
 	ENDPROC
 
 	PROCEDURE Init
-		Lparameters toObject, tcObjectName, tcFormCaptionSuffix
+		Lparameters toObject, tcObjectName, tcFormCaptionSuffix, tcPublicVariable
 		
 		*** DH 2022-04-03: handle llExplore
 		Local lcRelative, llFailed, llHasParent, loException, loNewParent, loParent, llExplore
@@ -235,6 +248,8 @@ DEFINE CLASS frmexplorer AS form
 		If Vartype(loParent) # 'O'
 			Return .F.
 		EndIf 
+		
+		This.cPublicVariable = tcPublicVariable
 		
 		Do While Pemstatus(m.loParent, 'Parent', 5) And m.llFailed = .F.
 			Try
@@ -710,10 +725,10 @@ DEFINE CLASS inputbox_showwindow1 AS inputbox OF "explorer.vcx"
 ENDDEFINE
 
 DEFINE CLASS treecontainer AS container 
- 	*< CLASSDATA: Baseclass="container" Timestamp="2022/11/23 12:29:13" Scale="Pixels" Uniqueid="" />
+ 	*< CLASSDATA: Baseclass="container" Timestamp="2022/12/12 12:35:20" Scale="Pixels" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="oleTree" UniqueID="" Timestamp="2013/11/04 20:00:00" />
+	*< OBJECTDATA: ObjPath="oleTree" UniqueID="" Timestamp="2022/12/12 12:33:22" />
 	*< OBJECTDATA: ObjPath="txtFullPath" UniqueID="" Timestamp="2022/11/23 07:38:04" />
 	*< OBJECTDATA: ObjPath="oPropGrid" UniqueID="" Timestamp="2013/11/04 20:00:00" />
 	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="2013/11/04 20:00:00" />
@@ -731,6 +746,7 @@ DEFINE CLASS treecontainer AS container
 	*<DefinedPropArrayMethod>
 		*m: about
 		*m: addtoobjectlist
+		*m: assignpublicvariable
 		*m: browse		&& Called to Browse the table identified in the current node; see also BrowseRefresh.
 		*m: browsecursor
 		*m: cfavorites_access
@@ -771,6 +787,7 @@ DEFINE CLASS treecontainer AS container
 		*m: sortnode
 		*m: togglefavorite
 		*m: transformcharacter		&& Returns the text for character values that appear in the third column of the grid.
+		*m: treeviewrightclick
 		*m: usekeywordtable
 		*m: zapcursor
 		*p: cbrowsefont		&& Sets the font to be used when browsing a cursor.
@@ -806,6 +823,7 @@ DEFINE CLASS treecontainer AS container
 		*p: nfavoritesbackcolor
 		*p: nfontsize
 		*p: nmaxcharacterwidth
+		*p: nmousebutton
 		*p: ocurrentnode
 		*p: ofirstobject		&& Stores an object reference to the top most object in the treeview.
 		*p: ofixcase
@@ -851,6 +869,7 @@ DEFINE CLASS treecontainer AS container
 	nfavoritesbackcolor = (RGB(255, 255, 128))
 	nfontsize = 9
 	nmaxcharacterwidth = 200
+	nmousebutton = 0
 	ocurrentnode = .NULL.
 	ofirstobject = .NULL.		&& Stores an object reference to the top most object in the treeview.
 	ofixcase = .NULL.
@@ -938,6 +957,9 @@ DEFINE CLASS treecontainer AS container
 		<memberdata name="gridrightclick" display="GridRightClick"/>
 		<memberdata name="editvalue" display="EditValue"/>
 		<memberdata name="togglefavorite" display="ToggleFavorite"/>
+		<memberdata name="nmousebutton" display="nMouseButton"/>
+		<memberdata name="treeviewrightclick" display="TreeViewRightClick"/>
+		<memberdata name="assignpublicvariable" display="AssignPublicVariable"/>
 		</VFPData>		&& XML Metadata for customizable properties
 
 	ADD OBJECT 'chklHighlightFavorites' AS checkbox WITH ;
@@ -1087,7 +1109,7 @@ DEFINE CLASS treecontainer AS container
 		Name = "oleTree", ;
 		Top = 8, ;
 		Width = 199
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGBe1ORx/9gBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAkTwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAMBIrgACAGUAAAAAAAUAAIBE6RkAAQAAAFwAH97svQEABQCM6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAuyOlgDtkBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAkTwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAPA5KA0CAGUAAAAAAAUAAIBE6RkAAQAAAFwAH97svQEABQCM6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
 
 	ADD OBJECT 'oPropGrid' AS grid WITH ;
 		Anchor = 45, ;
@@ -1216,6 +1238,22 @@ DEFINE CLASS treecontainer AS container
 		
 		
 		
+		
+	ENDPROC
+
+	PROCEDURE assignpublicvariable
+		Lparameters toItem
+		
+		Local lcPublicVariable, loException
+		
+		lcPublicVariable = Thisform.cPublicVariable
+		Try
+			Release m.&lcPublicVariable
+			Public &lcPublicVariable
+			&lcPublicVariable = m.toItem
+		Catch To m.loException
+		
+		Endtry
 		
 	ENDPROC
 
@@ -2377,6 +2415,32 @@ DEFINE CLASS treecontainer AS container
 		Return '"' + Left(m.lcValue, m.MaxWidth) + '"' + Iif(Len(m.lcValue) > m.MaxWidth, ' ...', '') + '  (' + Transform(Len(m.lcValue)) + ')'
 	ENDPROC
 
+	PROCEDURE treeviewrightclick
+		Lparameters toNode
+		
+		Local lcPublicVariable, loThis
+		
+		loItem = This.GetObjectReference(m.toNode)
+		
+		If Isnull(m.loItem)
+		Return
+		Endif	
+		
+		lcPublicVariable = Thisform.cPublicVariable
+		If Empty(m.lcPublicVariable)
+			Return
+		Endif
+		
+		loThis = This
+		Define Popup MyPopup ShortCut Relative From Mrow(), Mcol()
+		
+		Define Bar 1 Of MyPopup Prompt 'Assign this to ' + m.lcPublicVariable
+		On Selection Bar 1 Of MyPopup m.loThis.AssignPublicVariable(m.loItem)
+		
+		Activate Popup MyPopup
+		
+	ENDPROC
+
 	PROCEDURE usekeywordtable
 		Lparameters lcFileName, lcPrefix
 		
@@ -2530,11 +2594,25 @@ DEFINE CLASS treecontainer AS container
 		
 	ENDPROC
 
+	PROCEDURE oleTree.MouseDown
+		*** ActiveX Control Event ***
+		LPARAMETERS button, shift, x, y
+		
+		This.Parent.nMouseButton = button
+		
+	ENDPROC
+
 	PROCEDURE oleTree.NodeClick
 		*** ActiveX Control Event ***
 		Lparameters toNode
 		
-		This.Parent.FillGridWithProperties(toNode)
+		If This.Parent.nMouseButton <= 1
+			This.Parent.FillGridWithProperties(m.toNode)
+		Else
+			This.Parent.TreeViewRightClick(m.toNode)
+		Endif
+		
+		
 		
 	ENDPROC
 
