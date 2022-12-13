@@ -1,5 +1,12 @@
 # Object Explorer Change Log
 
+### 2022-12-13, Version 3.3.7
+
+* New: Option to assign object being explored into a public variable
+* New: Name of the public variable is set in the options page of Thor Configuration
+* New: The variable is released when Object Explorer closes.
+* New: Right-click context menu in the TreeView on left allows you to assign any object in the tree into the public variable
+
 ### 2022-11-23, Version 3.3.6
 
 * New: Double click now works on any column in the grid to edit property values.  
