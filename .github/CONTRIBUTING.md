@@ -19,7 +19,7 @@ Here are the steps to updating to a new version:
 2. Run FoxBin2Prg to create the text files.
    - `DO foxbin2prg.prg WITH 'BIN2PRG','*.*'`
 2. Set version and date in property _cVersion_ in class _treecontainer of explorer.vcx_, 
-5. Describe the changes in the What's New section near the bottom of _README.md_.
+5. Describe the changes in the top of _Change Log.md_.
 6. Alter the footer of \*.md files touched to recent date.
 7. In the _.\ThorUpdater_ folder:
 * Edit the majorVersion setting in Project.txt
