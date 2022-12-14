@@ -1,7 +1,7 @@
 lparameters toUpdateObject
 local ldDate
 ldDate = date(2022,12,13)
-toUpdateObject.AvailableVersion = 'Object Explorer-3.3.7-update-' + dtoc(ldDate, 1)
+toUpdateObject.AvailableVersion = 'Object Explorer-3.3.7.1-update-' + dtoc(ldDate, 1)
 AddProperty(toUpdateObject, 'Notes', GetReleaseNotes())
 
 return toUpdateObject
@@ -12,7 +12,7 @@ Procedure GetReleaseNotes
 Text to lcNote NoShow
 # Object Explorer Change Log
 
-### 2022-12-13, Version 3.3.7
+### 2022-12-13, Version 3.3.7.1
 
 * New: Option to assign object being explored into a public variable
 * New: Name of the public variable is set in the options page of Thor Configuration

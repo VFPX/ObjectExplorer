@@ -1,10 +1,14 @@
 # Object Explorer
 
-By Jim Nelson and Matt Slay
+Version 3.3.7.1 Released 2022-12-13
 
-[Change Log](Change%20Log.md)
+[What's new in this release](Change%20Log.md)
+
+***
 
 *Provides an explorer form to view members of the specified object.*
+
+By Jim Nelson and Matt Slay
 
 ![](ObjectExplorer.png)
 
