@@ -5,7 +5,7 @@ ldDate = Date()
 
 With m.toUpdateObject
 	.AvailableVersion = 'Object Explorer-3.3.7.2-update-' + Dtoc(m.ldDate, 1)
-	.RegisterWithThor = GetRegisterWithThor()
+	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
 
@@ -16,7 +16,7 @@ Return m.toUpdateObject
 * ================================================================================
 * ================================================================================
 
-Procedure GetRegisterWithThor
+Procedure GetRegisterWithThor(lcAppName)
 
 Local lcAppName, lcClassDefinitions, lcToolCode, lcDefineStatements, lcDescription, lcRegisterWithThor 
 
@@ -54,7 +54,7 @@ text to lcRegisterWithThor noshow textmerge
 
 		.PRGName    = 'Thor_Tool_ObjectExplorer'
 		.FolderName = '##InstallFolder##'
-		.Prompt     = ccTool
+		.Prompt     = '<<lcAppName>>'
 
 		<< 'Text to .Description NoShow' >>
 <<lcDescription>>
@@ -67,7 +67,7 @@ text to lcRegisterWithThor noshow textmerge
 
 * Options for this tool
 		.OptionClasses   = 'clsPublicVariableNameProperties' 
-		.OptionTool      = ccTool
+		.OptionTool      = '<<lcAppName>>'
 
 * And the actual code for the tool
 		<< 'Text To .DefineStatements Noshow '>>
@@ -224,7 +224,7 @@ Procedure GetReleaseNotes
 Text to lcNote NoShow
 # Object Explorer Change Log
 
-### 2022-12-14, Version 3.3.7.2
+### 2022-12-14, Version 3.3.7.3
 
 * Added description in the options page of Thor Configuration
 * Moved most of Updater file contents to Version file, eliminating need for Thor update.

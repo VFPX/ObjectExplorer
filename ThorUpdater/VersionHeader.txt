@@ -5,7 +5,7 @@ ldDate = Date()
 
 With m.toUpdateObject
 	.AvailableVersion = 'APPNAME-MAJORVERSION-update-' + Dtoc(m.ldDate, 1)
-	.RegisterWithThor = GetRegisterWithThor()
+	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
 
@@ -16,7 +16,7 @@ Return m.toUpdateObject
 * ================================================================================
 * ================================================================================
 
-Procedure GetRegisterWithThor
+Procedure GetRegisterWithThor(lcAppName)
 
 Local lcAppName, lcClassDefinitions, lcToolCode, lcDefineStatements, lcDescription, lcRegisterWithThor 
 
@@ -54,7 +54,7 @@ text to lcRegisterWithThor noshow textmerge
 
 		.PRGName    = 'Thor_Tool_ObjectExplorer'
 		.FolderName = '##InstallFolder##'
-		.Prompt     = ccTool
+		.Prompt     = '<<lcAppName>>'
 
 		<< 'Text to .Description NoShow' >>
 <<lcDescription>>
@@ -67,7 +67,7 @@ text to lcRegisterWithThor noshow textmerge
 
 * Options for this tool
 		.OptionClasses   = 'clsPublicVariableNameProperties' 
-		.OptionTool      = ccTool
+		.OptionTool      = '<<lcAppName>>'
 
 * And the actual code for the tool
 		<< 'Text To .DefineStatements Noshow '>>
