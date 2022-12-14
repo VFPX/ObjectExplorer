@@ -1,11 +1,223 @@
-lparameters toUpdateObject
-local ldDate
-ldDate = date()
-toUpdateObject.AvailableVersion = 'APPNAME-MAJORVERSION-update-' + dtoc(ldDate, 1)
-AddProperty(toUpdateObject, 'Notes', GetReleaseNotes())
+Lparameters toUpdateObject
+Local ldDate
 
-return toUpdateObject
+ldDate = Date()
 
+With m.toUpdateObject
+	.AvailableVersion = 'APPNAME-MAJORVERSION-update-' + Dtoc(m.ldDate, 1)
+	.RegisterWithThor = GetRegisterWithThor()
+	.Notes			  = GetReleaseNotes()
+Endwith
+
+Return m.toUpdateObject
+
+
+* ================================================================================
+* ================================================================================
+* ================================================================================
+
+Procedure GetRegisterWithThor
+
+Local lcAppName, lcClassDefinitions, lcToolCode, lcDefineStatements, lcDescription, lcRegisterWithThor 
+
+* Following indirect sequence is used so that blocks of text (code) can be pasted in from working code.
+
+* The description for the tool
+lcDescription	   = GetDescription()
+
+* Any #Define statements (will appear at the beginning of the tool)
+lcDefineStatements = GetDefineStatements()
+
+* The code in Proc ToolCode
+lcToolCode 		   = GetToolCode()
+
+* somewhat of a misnomer; all procedure and class definitions that follow Proc ToolCode
+lcClassDefinitions = GetClassDefinitions()
+
+* This is code to execute after the project has been installed by Thor for the
+* first time. Edit this if you want do something different (such as running
+* the installed code) or display a different message. You can use code like
+* this if you want to execute the installed code; Thor replaces
+* ##InstallFolder## with the installation path for the project:
+*
+* 'do "##InstallFolder##MyProject.prg"'
+
+text to lcRegisterWithThor noshow textmerge
+	MessageBox('<<lcAppName>> installed in folder ##InstallFolder##', 0, '<<lcAppName>> Installed', 5000)
+
+* Create the tool under Thor's Tool folder
+
+	loThorInfo = Execscript (_Screen.cThorDispatcher, 'Thor Register=')
+	with loThorInfo
+
+* Required properties.
+
+		.PRGName    = 'Thor_Tool_ObjectExplorer'
+		.FolderName = '##InstallFolder##'
+		.Prompt     = ccTool
+
+		<< 'Text to .Description NoShow' >>
+<<lcDescription>>
+		<< 'EndText' >>
+
+* These are used to group and sort tools when they are displayed in menus or the Thor form.
+
+		.Category        = 'Applications'
+		.CanRunAtStartUp = .F.
+
+* Options for this tool
+		.OptionClasses   = 'clsPublicVariableNameProperties' 
+		.OptionTool      = ccTool
+
+* And the actual code for the tool
+		<< 'Text To .DefineStatements Noshow '>>
+<<lcDefineStatements>>
+		<< 'Endtext' >>
+
+		<< 'Text To .Code Noshow '>>
+<<lcToolCode>>
+		<< 'Endtext' >>
+
+		<< 'Text To .ClassDefinitions Noshow '>>
+<<lcClassDefinitions >>
+		<< 'Endtext' >>
+		
+* Register the tool with Thor.
+		llRegister = .Register()
+	endwith
+endtext
+
+Return m.lcRegisterWithThor 
+EndProc
+
+
+* ================================================================================
+* ================================================================================
+Procedure GetDescription
+	Local lcDescription
+
+	Text To m.lcDescription Noshow
+Object Explorer
+	Endtext
+
+	Return Evl(m.lcDescription, '')
+EndProc
+
+
+* ================================================================================
+* ================================================================================
+Procedure GetDefineStatements
+	Local lcDefineStatements
+
+	Text To m.lcDefineStatements Noshow PreText 7
+	#Define ccTool 'Object Explorer'
+	#Define ccKey  'Public Variable Name'
+	#Define CRLF   Chr[13] + chr[10]
+	EndText 
+	Return Evl(m.lcDefineStatements, '')
+EndProc
+
+
+* ================================================================================
+* ================================================================================
+Procedure GetToolCode
+	Local lcCode
+
+	Text To m.lcCode Noshow
+	Local lcPublicVariable, loException, loObject
+
+	If Vartype(m.lxParam1) = 'O'
+		loObject = m.lxParam1
+	Else
+		loObject = Sys(1270)
+		If Vartype(m.loObject) # 'O'
+			Return
+		Endif
+	Endif
+
+	lcPublicVariable = Nvl(Execscript(_Screen.cThorDispatcher, 'Get Option=', ccKey, ccTool), '')
+	If Not Empty(m.lcPublicVariable)
+		Try
+			Release &lcPublicVariable
+			Public &lcPublicVariable
+			&lcPublicVariable = m.loObject
+		Catch To m.loException
+			lcPublicVariable = ''
+		Endtry
+	Endif
+
+	Do form ('##InstallFolder##Explorer') with m.loObject, , , m.lcPublicVariable
+
+	EndText 
+	Return Evl(m.lcCode, '')
+EndProc
+
+
+* ================================================================================
+* ================================================================================
+Procedure GetClassDefinitions
+	Local lcClassDefinitions
+
+	Text To m.lcClassDefinitions Noshow
+
+
+****************************************************************
+****************************************************************
+Define Class clsPublicVariableNameProperties As Custom
+
+	Tool		  = ccTool
+	Key			  = ccKey
+	Value		  = ''
+	EditClassName = 'clsPublicVariableName'
+
+Enddefine
+
+
+****************************************************************
+****************************************************************
+Define Class clsPublicVariableName As Container
+
+	Procedure Init
+		Local lcBodyMarkup, loRenderEngine
+		loRenderEngine = Execscript(_Screen.cThorDispatcher, 'Class= OptionRenderEngine')
+
+		lcBodyMarkup =										;
+			[   .Class	  = 'Label']						;
+			+ [ .Caption  = 'Public Variable Name']			;
+			+ [ .AutoSize = .T.]							;
+			+ [ .Top	  = (.Top + 8)]						;
+			+ [ |]											;
+			+ [ .Class = 'TextBox']							;
+			+ [ .cTool = ccTool]							;
+			+ [ .cKey  = ccKey]								;
+			+ [ .Width = 120]								;
+			+ [ .Row-Increment = 0]							;
+			+ [ .Top = (.Top - 4)]							;
+			+ [ |]											;
+			+ [ .Class	  = 'Label']						;
+			+ [ .Width    = 300]							;
+			+ [ .FontSize = 10]								;
+			+ [ .Caption  = 'When Object Explorer opens, this variable is created and populated with the value of the object that is displayed.  This variable is released when OE closes.']					;
+			+ [ .WordWrap = .T.]							;
+			+ [ |]	
+	
+						
+		loRenderEngine.cBodyMarkup = lcBodyMarkup
+		loRenderEngine.Render(This, 'Object Explorer')
+
+	Endproc
+
+Enddefine
+	
+	Endtext
+
+	Return Evl(m.lcClassDefinitions, '')
+Endproc
+
+
+* ================================================================================
+* ================================================================================
+* ================================================================================
 
 Procedure GetReleaseNotes
 

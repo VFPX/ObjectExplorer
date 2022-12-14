@@ -1,5 +1,10 @@
 # Object Explorer Change Log
 
+### 2022-12-14, Version 3.3.7.2
+
+* Added description in the options page of Thor Configuration
+* Moved most of Updater file contents to Version file, eliminating need for Thor update.
+
 ### 2022-12-13, Version 3.3.7.1
 
 * New: Option to assign object being explored into a public variable
