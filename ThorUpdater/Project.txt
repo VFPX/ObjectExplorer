@@ -1,5 +1,5 @@
 appName = Object Explorer
 appID = ObjectExplorer
-majorVersion = 3.3.7.1
+majorVersion = 3.3.7.2
 excludeFiles = *.zip,*.pj*,README.md,.gitignore,*.png,*.??2
 excludeFolders = *ThorUpdater*,*.github*,*docs*

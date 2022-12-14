@@ -1,6 +1,6 @@
 # Object Explorer
 
-Version 3.3.7.1 Released 2022-12-13
+Version 3.3.7.2 Released 2022-12-14
 
 [What's new in this release](Change%20Log.md)
 
@@ -96,10 +96,10 @@ I've also added some other functionality, like if one of the property values in 
 
 I also renamed this tool to Object Explorer (not to be confused with Tamar's Object Inspector).
 
-[Change Log](Change%20Log.md)
+[What's new in this release](Change%20Log.md)
 
 ----
 ## Contribution
 See [contribution](./.github/CONTRIBUTING.md)
 
-Last changed: _2022/12/13 ![Picture](./docs/pictures/vfpxpoweredby_alternative.gif)
+Last changed: _2022/12/14 ![Picture](./docs/pictures/vfpxpoweredby_alternative.gif)
