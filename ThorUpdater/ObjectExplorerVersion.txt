@@ -4,7 +4,7 @@ Local ldDate
 ldDate = Date()
 
 With m.toUpdateObject
-	.AvailableVersion = 'Object Explorer-3.3.7.2-update-' + Dtoc(m.ldDate, 1)
+	.AvailableVersion = 'Object Explorer-3.3.7.3-update-' + Dtoc(m.ldDate, 1)
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
