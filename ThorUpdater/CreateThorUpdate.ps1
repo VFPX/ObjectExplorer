@@ -1,4 +1,4 @@
-﻿# Get the project settings from Project.txt
+# Get the project settings from Project.txt
 $appInfo = Get-Content Project.txt
 $appName = $appInfo[0].Substring($appInfo[0].IndexOf('=') + 1).Trim()
 $appID   = $appInfo[1].Substring($appInfo[1].IndexOf('=') + 1).Trim()
@@ -9,6 +9,7 @@ $excludeFiles = $exclude.Split(',')
 # Ensure no spaces before or after comma
 $exclude = $appInfo[4].Substring($appInfo[4].IndexOf('=') + 1).Trim()
 $excludeFolders = $exclude.Split(',')
+$versionDATE = $appInfo[5].Substring($appInfo[0].IndexOf('=') + 1).Trim()
 
 # -------------------------------------------------
 # JRN 2022-12-11 Create the Version.txt from pieces
@@ -85,7 +86,7 @@ try
         $date = Get-Date
         $file = $appID + 'Version.txt'
         (Get-Content ThorUpdater\Version.txt).
-            Replace('date()', 'date(' + $date.Year + ',' + $date.Month + ',' + $date.Day + ')').
+            Replace('versionDATE', $versionDATE).
             Replace('APPNAME', $appName).
             Replace('MAJORVERSION', $majorVersion) |
             Set-Content ThorUpdater\$file

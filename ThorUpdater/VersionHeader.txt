@@ -1,9 +1,12 @@
 Lparameters toUpdateObject
 Local ldDate
 
-ldDate = Date()
+ldDate = versionDATE
 
 With m.toUpdateObject
+	.VersionDate      = m.ldDate
+	.VersionNumber    = 'MAJORVERSION - ' + Dtoc(m.ldDate, 1)
+
 	.AvailableVersion = 'APPNAME-MAJORVERSION-update-' + Dtoc(m.ldDate, 1)
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
