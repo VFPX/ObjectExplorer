@@ -1,9 +1,10 @@
-# Object Explorer Change Log
 
-### 2022-12-14, Version 3.3.7.3
+### 2022-12-15, Version 3.3.7.4
 
-* Added description in the options page of Thor Configuration
-* Moved most of Updater file contents to Version file, eliminating need for Thor update.
+* Issues related to Thor Configuration and Thor Check For Updates (CFU)
+    * Added description in the options page of Thor Configuration
+    * Moved most of Updater file contents to Version file.
+    * Corrected bugs related to version date as reported in CFU.
 
 ### 2022-12-13, Version 3.3.7.1
 

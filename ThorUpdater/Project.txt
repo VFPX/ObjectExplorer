@@ -1,5 +1,6 @@
-appName = Object Explorer
-appID = ObjectExplorer
-majorVersion = 3.3.7.3
-excludeFiles = *.zip,*.pj*,README.md,.gitignore,*.png,*.??2
+appName        = Object Explorer
+appID          = ObjectExplorer
+majorVersion   = 3.3.7.3
+excludeFiles   = *.zip,*.pj*,*.md,.gitignore,*.png,*.??2
 excludeFolders = *ThorUpdater*,*.github*,*docs*
+versionDATE    = Date(2022, 12, 15)
