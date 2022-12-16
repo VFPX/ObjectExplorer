@@ -5,9 +5,9 @@ ldDate = Date(2022, 12, 15)
 
 With m.toUpdateObject
 	.VersionDate      = m.ldDate
-	.VersionNumber    = '3.3.7.3 - ' + Dtoc(m.ldDate, 1)
+	.VersionNumber    = '3.3.7.4 - ' + Dtoc(m.ldDate, 1)
 
-	.AvailableVersion = 'Object Explorer-3.3.7.3-update-' + Dtoc(m.ldDate, 1)
+	.AvailableVersion = 'Object Explorer-3.3.7.4-update-' + Dtoc(m.ldDate, 1)
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
@@ -228,10 +228,10 @@ Text to lcNote NoShow
 
 ### 2022-12-15, Version 3.3.7.4
 
-* Issues related to Thor Configuration and Update
+* Issues related to Thor Configuration and Thor Check For Updates (CFU)
     * Added description in the options page of Thor Configuration
     * Moved most of Updater file contents to Version file.
-    * Corrected bugs related to version date as reported in Thor.
+    * Corrected bugs related to version date as reported in CFU.
 
 ### 2022-12-13, Version 3.3.7.1
 
