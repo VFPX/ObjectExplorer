@@ -72,6 +72,9 @@ text to lcRegisterWithThor noshow textmerge
 		.OptionClasses   = 'clsPublicVariableNameProperties' 
 		.OptionTool      = '<<lcAppName>>'
 
+		.Link = ccLink
+		.Version = ccVERSIONNUMBER 
+
 * And the actual code for the tool
 		<< 'Text To .DefineStatements Noshow '>>
 <<lcDefineStatements>>
