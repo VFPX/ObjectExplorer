@@ -16,7 +16,8 @@ Here are the steps to updating to a new version:
 1. Please create a fork at github
    - See this [guide](https://www.dataschool.io/how-to-contribute-on-github/) for setting up and using a fork
 2. Make whatever changes are necessary.
-2. Run FoxBin2Prg to create the text files.
+---
+3. Run FoxBin2Prg to create the text files.
    - `DO foxbin2prg.prg WITH 'BIN2PRG','*.*'`
 2. Set version and date in property _cVersion_ in class _treecontainer of explorer.vcx_, 
 5. Set version and date in top few lines of _ReadMe.md_ 
@@ -24,9 +25,10 @@ Here are the steps to updating to a new version:
 6. In the _.\ThorUpdater_ folder:
 * Edit the majorVersion setting in Project.txt
 * Right-click CreateThorUpdate.ps1 and select Run with PowerShell from the shortcut menu to update ObjectExplorerVersion.txt and ObjectExplorer.zip
+---
 8. Commit
 9. Push to your fork
 10. Create a pull request
 
 ----
-Last changed: _2022/05/22_ ![Picture](../Docs/Images/vfpxpoweredby_alternative.gif)
+Last changed: _2022/12/19_ ![Picture](../Docs/Images/vfpxpoweredby_alternative.gif)

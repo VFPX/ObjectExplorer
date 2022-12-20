@@ -11,102 +11,38 @@ $exclude = $appInfo[4].Substring($appInfo[4].IndexOf('=') + 1).Trim()
 $excludeFolders = $exclude.Split(',')
 $versionDATE = $appInfo[5].Substring($appInfo[0].IndexOf('=') + 1).Trim()
 
-# -------------------------------------------------
-# JRN 2022-12-11 Create the Version.txt from pieces
-$VersionFile = 'Version.txt'
-cat VersionHeader.txt  >  $VersionFile
-cat '..\Change Log.md' >> $VersionFile
-cat VersionFooter.txt  >> $VersionFile
-# -------------------------------------------------
+$SourceFolder = $pwd
+cd '..\Installed Files'
 
 # Get the name of the zip file.
-$zipFileName = "ThorUpdater\$appID.zip"
+$zipFileName = "..\ThorUpdater\$appID.zip"
 
-# Move up to the project folder
-
-cd ..
-try
-{ 
-    # Delete the zip file if it exists.
+ # Delete the zip file if it exists.
     $exists = Test-Path ($zipFileName)
     if ($exists)
     {
         del ($zipFileName)
     }
+    
+Compress-Archive -Path * -DestinationPath $zipFileName
+cd $SourceFolder
 
-    # Loop through all the files in the project folder except those we don't want
-    # and add them to a zip file.
-    # See https://stackoverflow.com/questions/15294836/how-can-i-exclude-multiple-folders-using-get-childitem-exclude
-    # for how to exclude folders when -Recurse is used
-    $files = @(Get-ChildItem . -recurse -file -exclude $excludeFiles |
-        %{ 
-            $allowed = $true
-            foreach ($exclude in $excludeFolders)
-            { 
-                if ((Split-Path $_.FullName -Parent) -ilike $exclude)
-                { 
-                    $allowed = $false
-                    break
-                }
-            }
-            if ($allowed)
-            {
-                $_
-            }
-        }
-    );
+# -------------------------------------------------
+# JRN 2022-12-11 Create the Version.txt from pieces
+$VersionFile = 'VersionTemp.txt'
+cat VersionHeader.txt  >  $VersionFile
+cat '..\Change Log.md' >> $VersionFile
+cat VersionFooter.txt  >> $VersionFile
+# -------------------------------------------------
 
-    # See https://stackoverflow.com/questions/51392050/compress-archive-and-preserve-relative-paths to compress
-    # exclude directory entries and generate fullpath list
-    $filesFullPath = $files | Where-Object -Property Attributes -CContains Archive | ForEach-Object -Process {Write-Output -InputObject $_.FullName}
-
-    #create zip file
-    Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
-    $zip = [System.IO.Compression.ZipFile]::Open((Join-Path -Path $(Resolve-Path -Path ".") -ChildPath $zipFileName), [System.IO.Compression.ZipArchiveMode]::Create)
-
-    #write entries with relative paths as names
-    foreach ($fname in $filesFullPath)
-    {
-        $rname = $(Resolve-Path -Path $fname -Relative) -replace '\.\\',''
-        $zentry = $zip.CreateEntry($rname)
-        $zentryWriter = New-Object -TypeName System.IO.BinaryWriter $zentry.Open()
-        $zentryWriter.Write([System.IO.File]::ReadAllBytes($fname))
-        $zentryWriter.Flush()
-        $zentryWriter.Close()
-    }
-
-    # clean up
-    Get-Variable -exclude Runspace | Where-Object {$_.Value -is [System.IDisposable]} | Foreach-Object {$_.Value.Dispose(); Remove-Variable $_.Name};
-
-    # If the zip file was created, read in the Version source file, replace
-    # placeholders, and write out the project version file.
-    if ($?)
-    {
-        # Read in the update file
-        $date = Get-Date
-        $file = $appID + 'Version.txt'
-        (Get-Content ThorUpdater\Version.txt).
+# Read in the update file
+$date = Get-Date
+$file = $appID + 'Version.txt'
+       (Get-Content $VersionFile).
             Replace('versionDATE', $versionDATE).
             Replace('APPNAME', $appName).
             Replace('MAJORVERSION', $majorVersion) |
-            Set-Content ThorUpdater\$file
+            Set-Content $file
         Write-Host "Update creation successful"
-    }
-    else
-    { 
-        Write-Host "Zip creation failed"
-		pause
-    } 
-}
 
-catch
-{
-    Write-Host "Error occurred at $(Get-Date): $($Error[0].Exception.Message)"
-	pause
-} 
-
-finally
-{
-# Move back to the ThorUpdater folder
-    cd ThorUpdater
-} 
+del ($VersionFile)
