@@ -1,13 +1,14 @@
 Lparameters toUpdateObject
-Local ldDate
+Local lcDate, ldDate
 
-ldDate = Date(2022, 12, 15)
+ldDate = Date(2022, 12, 26)
+lcDate = Str(Year(ldDate),4) + '/' + Transform(Month(ldDate), '@L 99') + '/' +  Transform(Day(ldDate), '@L 99')
 
 With m.toUpdateObject
 	.VersionDate      = m.ldDate
-	.VersionNumber    = '3.3.7.4 - ' + Dtoc(m.ldDate, 1)
+	.VersionNumber    = '3.4 - ' + lcDate
 
-	.AvailableVersion = 'Object Explorer-3.3.7.4-update-' + Dtoc(m.ldDate, 1)
+	.AvailableVersion = 'Object Explorer-3.4-update-' + lcDate
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
@@ -228,6 +229,11 @@ Endproc
 Procedure GetReleaseNotes
 
 Text to lcNote NoShow
+
+### 2022-12-26, Version 3.4
+
+* New: You can now view and edit array properties by double-clicking on the row for the array in the grid.
+* New: Right-clicking on a node in the TreeView on left prompts for the name of a public variable in which to assign the value of the node.
 
 ### 2022-12-15, Version 3.3.7.4
 

@@ -1,4 +1,9 @@
 
+### 2022-12-26, Version 3.4
+
+* New: You can now view and edit array properties by double-clicking on the row for the array in the grid.
+* New: Right-clicking on a node in the TreeView on left prompts for the name of a public variable in which to assign the value of the node.
+
 ### 2022-12-15, Version 3.3.7.4
 
 * Issues related to Thor Configuration and Thor Check For Updates (CFU)

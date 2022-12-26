@@ -1,4 +1,4 @@
 appName        = Object Explorer
 appID          = ObjectExplorer
-majorVersion   = 3.3.7.4
-versionDATE    = Date(2022, 12, 15)
+majorVersion   = 3.4
+versionDATE    = Date(2022, 12, 26)
