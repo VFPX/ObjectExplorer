@@ -1,6 +1,6 @@
 # Object Explorer
 
-Version 3.3.7.4 Released 2022-12-15
+Version 3.4 Released 2022-12-26
 
 [What's new in this release](Change%20Log.md)
 
@@ -102,4 +102,4 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 ## Contribution
 See [contribution](./.github/CONTRIBUTING.md)
 
-Last changed: _2022/12/16 ![Picture](./docs/pictures/vfpxpoweredby_alternative.gif)
+Last changed: _2022/12/26 ![Picture](./docs/images/vfpxpoweredby_alternative.gif)

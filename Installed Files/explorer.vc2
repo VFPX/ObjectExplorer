@@ -196,18 +196,21 @@ DEFINE CLASS frmexplorer AS form
 		*< END OBJECT: ClassLib="explorer.vcx" BaseClass="container" />
 	
 	PROCEDURE Destroy
-		Local lcPublicVariable, loException
+		Local lcPublicVariable, lcPublicVariables, lnI, loException
 		
 		This.SaveSettings()
 		
-		lcPublicVariable = This.cPublicVariable
-		If Not Empty(m.lcPublicVariable)
+		* Release any public variables created
+		lcPublicVariables = Evl(This.cPublicVariable, '')
+		For lnI = 1 To Getwordcount(m.lcPublicVariables)
+			lcPublicVariable = Trim(Getwordnum(m.lcPublicVariables, m.lnI))
 			Try
 				Release  &lcPublicVariable
 			Catch To m.loException
 		
 			Endtry
-		Endif
+		Endfor
+		
 	ENDPROC
 
 	PROCEDURE getsavedproperty
@@ -844,7 +847,7 @@ DEFINE CLASS treecontainer AS container
 	cfilter = 
 	cmyfavorites = 		&& My custom list of properties that are Favorites (separated by spaces, commas, or new lines)
 	cskippedobjectnames = 		&& List of object names that I want Explorer to Ignore
-	cversion = 3.3.7.4 - 2022/12/15
+	cversion = 3.4 - 2022/12/26
 	cvfpkeywordcursor = 
 	cvfpkeywordtablename = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL FOXPRO 9\WIZARDS\FDKEYWRD.dbf		&& Used when Explorer is used and Thor is not in use (presumably, in Production), FoxPro's native table for keyword names
 	Height = 623
@@ -970,7 +973,7 @@ DEFINE CLASS treecontainer AS container
 		ControlSource = "This.Parent.lHighlightFavorites", ;
 		FontBold = .T., ;
 		Height = 17, ;
-		Left = 205, ;
+		Left = 135, ;
 		Name = "chklHighlightFavorites", ;
 		Top = 602, ;
 		Width = 122
@@ -984,7 +987,7 @@ DEFINE CLASS treecontainer AS container
 		ControlSource = "This.Parent.lSortFavorites", ;
 		FontBold = .T., ;
 		Height = 17, ;
-		Left = 78, ;
+		Left = 8, ;
 		Name = "chklSortFavorites", ;
 		Top = 602, ;
 		Width = 108
@@ -995,9 +998,9 @@ DEFINE CLASS treecontainer AS container
 		AutoSize = .T., ;
 		Caption = "Browse", ;
 		Height = 27, ;
-		Left = 11, ;
+		Left = 269, ;
 		Name = "cmdBrowse", ;
-		Top = 597, ;
+		Top = 596, ;
 		Width = 60
 		*< END OBJECT: BaseClass="commandbutton" />
 
@@ -1094,28 +1097,28 @@ DEFINE CLASS treecontainer AS container
 		Anchor = 12, ;
 		AutoSize = .F., ;
 		Caption = "Ver X.X.X", ;
-		FontSize = 8, ;
+		FontSize = 9, ;
 		Height = 16, ;
-		Left = 493, ;
+		Left = 504, ;
 		Name = "Label1", ;
-		Top = 604, ;
-		Width = 123
+		Top = 603, ;
+		Width = 110
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'oleTree' AS olecontrol WITH ;
 		Anchor = 135, ;
-		Height = 586, ;
+		Height = 584, ;
 		Left = 8, ;
 		Name = "oleTree", ;
 		Top = 8, ;
 		Width = 199
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABDXayxJEdkBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAkTwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAHCdhgoCAGUAAAAAAAUAAIBg6hkAAQAAAFwAH97svQEABQCo6hkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALALL7x4GdkBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAXDwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAIDiPwQCAGUAAAAAAAUAAIBE6RkAAQAAAFwAH97svQEABQCM6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
 
 	ADD OBJECT 'oPropGrid' AS grid WITH ;
 		Anchor = 45, ;
 		FontSize = 8, ;
 		GridLineColor = 192,192,192, ;
-		Height = 558, ;
+		Height = 556, ;
 		Left = 212, ;
 		Name = "oPropGrid", ;
 		ReadOnly = .T., ;
@@ -1127,15 +1130,17 @@ DEFINE CLASS treecontainer AS container
 		*< END OBJECT: BaseClass="grid" />
 
 	ADD OBJECT 'txtFullPath' AS textbox WITH ;
+		Alignment = 2, ;
 		Anchor = 14, ;
+		BorderStyle = 0, ;
 		DisabledForeColor = 0,0,0, ;
 		Enabled = .F., ;
 		Height = 23, ;
 		Left = 340, ;
 		Name = "txtFullPath", ;
 		NullDisplay = "", ;
-		Top = 600, ;
-		Width = 276
+		Top = 601, ;
+		Width = 196
 		*< END OBJECT: BaseClass="textbox" />
 	
 	PROCEDURE about
@@ -1244,17 +1249,38 @@ DEFINE CLASS treecontainer AS container
 	PROCEDURE assignpublicvariable
 		Lparameters toItem
 		
-		Local lcPublicVariable, loException
+		#Define ccTool 'Object Explorer'
+		#Define ccKey  'Public Variable Name'
 		
-		lcPublicVariable = Thisform.cPublicVariable
+		Local lcPublicVariable, lcVariable, loException, lxNewValue
+		
+		lcPublicVariable = Nvl(Execscript(_Screen.cThorDispatcher, 'Get Option=', ccKey, ccTool), '')
+		
+		lxNewValue = This.Inputbox('Variable Name', m.lcPublicVariable, 'Public variable to be created for this node')
+		If Vartype(m.lxNewValue) # 'C'
+			Return
+		Endif
+		
+		lcVariable = Alltrim(Evl(Nvl(m.lxNewValue, ''), ''))
+		
+		Execscript(_Screen.cThorDispatcher, 'Set Option=', ccKey, ccTool, m.lcVariable)
+		If Empty(m.lcVariable)
+			Return
+		Endif
+		
 		Try
-			Release m.&lcPublicVariable
-			Public &lcPublicVariable
-			&lcPublicVariable = m.toItem
+			Release m.&lcVariable
+			Public &lcVariable
+			&lcVariable = m.toItem
 		Catch To m.loException
-		
+			Messagebox('Unable to create ' + m.lcVariable, 16)
 		Endtry
 		
+		If Upper(m.lcPublicVariable) == Upper(m.lcVariable)
+			Return
+		Endif
+		
+		Thisform.cPublicVariable = Thisform.cPublicVariable + ' ' + m.lcVariable
 	ENDPROC
 
 	PROCEDURE browse		&& Called to Browse the table identified in the current node; see also BrowseRefresh.
@@ -1886,7 +1912,7 @@ DEFINE CLASS treecontainer AS container
 	ENDPROC
 
 	PROCEDURE inputbox
-		Lparameters lcPropName, lxValue
+		Lparameters lcPropName, lxValue, lcCaption
 		
 		Local lxResult As 'Empty'
 		Local lnCol, lnRow, loInputBox
@@ -1908,7 +1934,7 @@ DEFINE CLASS treecontainer AS container
 			loInputBox.Left	= (_vfp.Width - m.loInputBox.Width) / 2
 		Endif
 		
-		loInputBox.Caption	= 'Enter value for ' + m.lcPropName && or =(phrase to execute)'
+		loInputBox.Caption	= Evl(m.lcCaption, 'Enter value for ' + m.lcPropName) && or =(phrase to execute)'
 		loInputBox.cCaption	= m.lcPropName
 		loInputBox.xValue	= m.lxValue
 		
@@ -2418,26 +2444,28 @@ DEFINE CLASS treecontainer AS container
 	PROCEDURE treeviewrightclick
 		Lparameters toNode
 		
-		Local lcPublicVariable, loThis
+		Local lcPublicVariable, loItem, loThis
+		
+		If Pemstatus(_Screen, 'cThorDispatcher', 5) = .F.
+			Return
+		Endif
 		
 		loItem = This.GetObjectReference(m.toNode)
 		
 		If Isnull(m.loItem)
-		Return
-		Endif	
-		
-		lcPublicVariable = Thisform.cPublicVariable
-		If Empty(m.lcPublicVariable)
 			Return
 		Endif
 		
-		loThis = This
-		Define Popup MyPopup ShortCut Relative From Mrow(), Mcol()
+		This.AssignPublicVariable(m.loItem)
 		
-		Define Bar 1 Of MyPopup Prompt 'Assign this to ' + m.lcPublicVariable
-		On Selection Bar 1 Of MyPopup m.loThis.AssignPublicVariable(m.loItem)
+		*!* ******** JRN Removed 2022-12-26 ********
+		*!* loThis = This
+		*!* Define Popup MyPopup ShortCut Relative From Mrow(), Mcol()
 		
-		Activate Popup MyPopup
+		*!* Define Bar 1 Of MyPopup Prompt 'Assign this node to a public variable'
+		*!* On Selection Bar 1 Of MyPopup m.loThis.AssignPublicVariable(m.loItem)
+		
+		*!* Activate Popup MyPopup
 		
 	ENDPROC
 
@@ -2512,10 +2540,10 @@ DEFINE CLASS treecontainer AS container
 		
 		If Empty(m.lcBrowseAlias)
 			This.Caption = 'Browse'
-			This.Enabled = .F.
+			This.Visible = .F.
 		Else
 			This.Caption = 'Browse ' + m.lcBrowseAlias
-			This.Enabled = .T.
+			This.Visible = .T.
 		Endif
 		
 		

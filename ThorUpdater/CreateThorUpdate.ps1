@@ -1,15 +1,10 @@
 # Get the project settings from Project.txt
 $appInfo = Get-Content Project.txt
-$appName = $appInfo[0].Substring($appInfo[0].IndexOf('=') + 1).Trim()
-$appID   = $appInfo[1].Substring($appInfo[1].IndexOf('=') + 1).Trim()
+
+$appName      = $appInfo[0].Substring($appInfo[0].IndexOf('=') + 1).Trim()
+$appID        = $appInfo[1].Substring($appInfo[1].IndexOf('=') + 1).Trim()
 $majorVersion = $appInfo[2].Substring($appInfo[2].IndexOf('=') + 1).Trim()
-$exclude = $appInfo[3].Substring($appInfo[3].IndexOf('=') + 1).Trim()
-# Ensure no spaces before or after comma
-$excludeFiles = $exclude.Split(',')
-# Ensure no spaces before or after comma
-$exclude = $appInfo[4].Substring($appInfo[4].IndexOf('=') + 1).Trim()
-$excludeFolders = $exclude.Split(',')
-$versionDATE = $appInfo[5].Substring($appInfo[0].IndexOf('=') + 1).Trim()
+$versionDATE  = $appInfo[3].Substring($appInfo[3].IndexOf('=') + 1).Trim()
 
 $SourceFolder = $pwd
 cd '..\Installed Files'
@@ -43,6 +38,7 @@ $file = $appID + 'Version.txt'
             Replace('APPNAME', $appName).
             Replace('MAJORVERSION', $majorVersion) |
             Set-Content $file
-        Write-Host "Update creation successful"
 
 del ($VersionFile)
+
+Write-Host "Update creation successful"
