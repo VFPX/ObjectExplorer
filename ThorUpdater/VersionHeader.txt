@@ -2,7 +2,7 @@ Lparameters toUpdateObject
 Local lcDate, ldDate
 
 ldDate = versionDATE
-lcDate = Dtoc(ldDate, 1)
+lcDate = Dtoc(ldDate, 1) 
 
 With m.toUpdateObject
 	.VersionDate      = m.ldDate
