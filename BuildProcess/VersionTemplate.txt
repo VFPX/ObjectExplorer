@@ -229,3 +229,9 @@ Endproc
 Procedure GetReleaseNotes
 
 Text to lcNote NoShow
+{ChangeLog}
+EndText
+
+Return lcNote
+
+EndProc 

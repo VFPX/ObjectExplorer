@@ -1,0 +1,5 @@
+AppName        = Object Explorer
+AppID          = ObjectExplorer
+Version   	   = 3.4
+ChangeLog      = Change Log.md
+Bin2PRGFolder  = InstalledFiles
