@@ -72,4 +72,4 @@
 
     * InputBox_ShowWindow1: set Desktop to .T. This doesn't affect apps with _screen.Visible =  .T. but does allow it to work when it's .F.
 
-Last changed: _2023/01/13 ![Picture](vfpxpoweredby_alternative.gif)
+Last changed: _2023/01/13 ![Picture](Images/vfpxpoweredby_alternative.gif)
