@@ -10,7 +10,7 @@ Version 3.4.01 Released 2023/01/13
 
 By Jim Nelson and Matt Slay
 
-![](ObjectExplorer.png)
+![](Images/ObjectExplorer.png)
 
 *From Jim Nelson:*
 
@@ -74,7 +74,7 @@ A few technical notes:
 
 * There are a number of properties and methods, in both the form and its main object "TreeContainer", available for customization. These are easily accessed using PEMEditor, as they are are Local. There's a description field for each.
 
-    ![](PEMEditor.png)
+    ![](Images/PEMEditor.png)
 
 * One such method is LogChange, which is called each time any property is changed (by double-clicking in the grid's value column). The parameters should contain all the information you might want to record for later review. Override this method in whichever SCX you use as the ObjectExplorer form.
 
@@ -102,4 +102,4 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 ## Contribution
 See [contribution](./.github/CONTRIBUTING.md)
 
-Last changed: _2023/01/13 ![Picture](vfpxpoweredby_alternative.gif)
+Last changed: _2023/01/13 ![Picture](Images/vfpxpoweredby_alternative.gif)
