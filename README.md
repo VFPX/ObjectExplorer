@@ -102,4 +102,4 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 ## Contribution
 See [contribution](./.github/CONTRIBUTING.md)
 
-Last changed: _2022/12/26 ![Picture](./docs/images/vfpxpoweredby_alternative.gif)
+Last changed: _2023/01/13 ![Picture](vfpxpoweredby_alternative.gif)

@@ -1,4 +1,8 @@
 
+### 2023-01-13, Version 3.4.01
+
+* Minor documentation changes; no code changes
+
 ### 2022-12-26, Version 3.4
 
 * New: You can now view and edit array properties by double-clicking on the row for the array in the grid.
@@ -68,3 +72,4 @@
 
     * InputBox_ShowWindow1: set Desktop to .T. This doesn't affect apps with _screen.Visible =  .T. but does allow it to work when it's .F.
 
+Last changed: _2023/01/13 ![Picture](vfpxpoweredby_alternative.gif)
