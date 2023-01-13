@@ -17,18 +17,18 @@ Here are the steps to updating to a new version:
    - See this [guide](https://www.dataschool.io/how-to-contribute-on-github/) for setting up and using a fork
 2. Make whatever changes are necessary.
 ---
-3. Set version and date in property _cVersion_ in class _treecontainer_ of _explorer.vcx_, 
-5. Run FoxBin2Prg to create the text files in folder _Installed Files_
-   - `DO foxbin2prg.prg WITH 'BIN2PRG','*.*'`
-2. Update the version and date in top few lines and at the very bottom of _ReadMe.md_ 
-7. Describe the changes in the top of _Change Log.md_.
-6. In folder _ThorUpdater_:
-    - Edit the majorVersion and versionDate settings in _Project.txt_
-    - Right-click _CreateThorUpdate.ps1_ and select **Run with PowerShell** from the shortcut menu to re-create _ObjectExplorerVersion.txt_ and _ObjectExplorer.zip_
+3. In folder _BuildProcess_:
+   - Edit the Version setting in _ProjectSettings.txt_
+   - Run Thor Tool "**Deploy VFPX Project**" to create the installation files.
+3. Describe the changes in the top of _Change Log.md_.
+3. Update the version and date in the top few lines and at the very bottom of 
+    * _ReadMe.md_ 
+    * _Change Log.md_
 ---
-8. Commit
+6. Commit
 9. Push to your fork
 10. Create a pull request
 
 ----
-Last changed: _2022/12/26_ ![Picture](../Docs/Images/vfpxpoweredby_alternative.gif)
+
+Last changed: _2023/01/13 ![Picture](vfpxpoweredby_alternative.gif)

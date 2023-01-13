@@ -1,14 +1,12 @@
 Lparameters toUpdateObject
 Local lcDate, ldDate
 
-ldDate = Date(2022, 12, 26)
-lcDate = Dtoc(ldDate, 1) 
+lcDate = '20230113'
 
 With m.toUpdateObject
-	.VersionDate      = m.ldDate
-	.VersionNumber    = '3.4 - ' + lcDate
+	.VersionNumber    = '3.4.01 - ' + lcDate
 
-	.AvailableVersion = 'Object Explorer-3.4-update-' + lcDate
+	.AvailableVersion = 'Object Explorer-3.4.01-08413-' + lcDate
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
@@ -230,6 +228,10 @@ Procedure GetReleaseNotes
 
 Text to lcNote NoShow
 
+### 2023-01-13, Version 3.4.01
+
+* Minor documentation changes; no code changes
+
 ### 2022-12-26, Version 3.4
 
 * New: You can now view and edit array properties by double-clicking on the row for the array in the grid.
@@ -299,6 +301,7 @@ Text to lcNote NoShow
 
     * InputBox_ShowWindow1: set Desktop to .T. This doesn't affect apps with _screen.Visible =  .T. but does allow it to work when it's .F.
 
+Last changed: _2023/01/13 ![Picture](vfpxpoweredby_alternative.gif)
 
 EndText
 
