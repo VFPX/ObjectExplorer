@@ -102,4 +102,4 @@ I also renamed this tool to Object Explorer (not to be confused with Tamar's Obj
 ## Helping with this project
 See [How to contribute to Object Inspector](.github/CONTRIBUTING.md) for details on how to help with this project.
 
-Last changed: _2023/01/13 ![Picture](Images/vfpxpoweredby_alternative.gif)
+Last changed: _2023/01/19_ ![Picture](Images/vfpxpoweredby_alternative.gif)
