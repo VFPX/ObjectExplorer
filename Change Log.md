@@ -1,4 +1,10 @@
 
+### 2023-07-29, Version 3.4.02
+
+* New Option to open as Top Level form
+* Fix bug occurring for items in a collections that are scalars
+* Settings file moved to Home(7) + 'ObjectExplorerSettings'
+
 ### 2023-01-13, Version 3.4.01
 
 * Minor documentation changes; no code changes

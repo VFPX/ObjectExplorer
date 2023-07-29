@@ -1,6 +1,6 @@
 # Object Explorer
 
-Version 3.4.01 Released 2023/01/13
+Version 3.4.02 Released 2023/07/29
 
 [What's new in this release](Change%20Log.md)
 
