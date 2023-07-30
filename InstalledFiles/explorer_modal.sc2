@@ -8,46 +8,50 @@
 DEFINE CLASS dataenvironment AS dataenvironment 
  	*< CLASSDATA: Baseclass="dataenvironment" Timestamp="" Scale="" Uniqueid="" ClassIcon="2" />
 
-	DataSource = .NULL.
-	Height = 0
-	Left = 0
-	Name = "Dataenvironment"
-	Top = 0
-	Width = 0
+	*<PropValue>
+		DataSource = .NULL.
+		Height = 0
+		Left = 0
+		Name = "Dataenvironment"
+		Top = 0
+		Width = 0
+	*</PropValue>
 
 ENDDEFINE
 
 DEFINE CLASS dora AS frmexplorer OF "explorer.vcx" 
  	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="" Uniqueid="" />
 
-	Caption = "Explorer"
-	DoCreate = .T.
-	Name = "Dora"
-	ShowWindow = 1
-	WindowType = 1
-	TREECONTAINER.cmdBrowse.Name = "cmdBrowse"
-	TREECONTAINER.cntCheckBoxes.chklShowCustom.Alignment = 0
-	TREECONTAINER.cntCheckBoxes.chklShowCustom.Name = "chklShowCustom"
-	TREECONTAINER.cntCheckBoxes.chklShowInherited.Alignment = 0
-	TREECONTAINER.cntCheckBoxes.chklShowInherited.Name = "chklShowInherited"
-	TREECONTAINER.cntCheckBoxes.chklShowNative.Alignment = 0
-	TREECONTAINER.cntCheckBoxes.chklShowNative.Name = "chklShowNative"
-	TREECONTAINER.cntCheckBoxes.chklShowNonDefault.Alignment = 0
-	TREECONTAINER.cntCheckBoxes.chklShowNonDefault.Name = "chklShowNonDefault"
-	TREECONTAINER.cntCheckBoxes.chklSortFavorites.Alignment = 0
-	TREECONTAINER.cntCheckBoxes.chklSortFavorites.Name = "chklSortFavorites"
-	TREECONTAINER.cntCheckBoxes.lblFilter.Name = "lblFilter"
-	TREECONTAINER.cntCheckBoxes.Name = "cntCheckBoxes"
-	TREECONTAINER.cntCheckBoxes.txtFilter.Name = "txtFilter"
-	TREECONTAINER.Label1.Name = "Label1"
-	TREECONTAINER.Name = "TREECONTAINER"
-	TREECONTAINER.oleTree.Height = 586
-	TREECONTAINER.oleTree.Left = 8
-	TREECONTAINER.oleTree.Name = "oleTree"
-	TREECONTAINER.oleTree.Top = 8
-	TREECONTAINER.oleTree.Width = 199
-	TREECONTAINER.oPropGrid.Name = "oPropGrid"
-	TREECONTAINER.txtFullPath.Name = "txtFullPath"
-	cmdExit.Name = "cmdExit"
+	*<PropValue>
+		Caption = "Explorer"
+		DoCreate = .T.
+		Name = "Dora"
+		ShowWindow = 1
+		WindowType = 1
+		TREECONTAINER.cmdBrowse.Name = "cmdBrowse"
+		TREECONTAINER.cntCheckBoxes.chklShowCustom.Alignment = 0
+		TREECONTAINER.cntCheckBoxes.chklShowCustom.Name = "chklShowCustom"
+		TREECONTAINER.cntCheckBoxes.chklShowInherited.Alignment = 0
+		TREECONTAINER.cntCheckBoxes.chklShowInherited.Name = "chklShowInherited"
+		TREECONTAINER.cntCheckBoxes.chklShowNative.Alignment = 0
+		TREECONTAINER.cntCheckBoxes.chklShowNative.Name = "chklShowNative"
+		TREECONTAINER.cntCheckBoxes.chklShowNonDefault.Alignment = 0
+		TREECONTAINER.cntCheckBoxes.chklShowNonDefault.Name = "chklShowNonDefault"
+		TREECONTAINER.cntCheckBoxes.chklSortFavorites.Alignment = 0
+		TREECONTAINER.cntCheckBoxes.chklSortFavorites.Name = "chklSortFavorites"
+		TREECONTAINER.cntCheckBoxes.lblFilter.Name = "lblFilter"
+		TREECONTAINER.cntCheckBoxes.Name = "cntCheckBoxes"
+		TREECONTAINER.cntCheckBoxes.txtFilter.Name = "txtFilter"
+		TREECONTAINER.Label1.Name = "Label1"
+		TREECONTAINER.Name = "TREECONTAINER"
+		TREECONTAINER.oleTree.Height = 586
+		TREECONTAINER.oleTree.Left = 8
+		TREECONTAINER.oleTree.Name = "oleTree"
+		TREECONTAINER.oleTree.Top = 8
+		TREECONTAINER.oleTree.Width = 199
+		TREECONTAINER.oPropGrid.Name = "oPropGrid"
+		TREECONTAINER.txtFullPath.Name = "txtFullPath"
+		cmdExit.Name = "cmdExit"
+	*</PropValue>
 
 ENDDEFINE

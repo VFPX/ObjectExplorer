@@ -1,12 +1,12 @@
 Lparameters toUpdateObject
 Local lcDate, ldDate
 
-lcDate = '20230113'
+lcDate = '20230729'
 
 With m.toUpdateObject
-	.VersionNumber    = '3.4.01 - ' + lcDate
+	.VersionNumber    = '3.4.02 - ' + lcDate
 
-	.AvailableVersion = 'Object Explorer-3.4.01-08413-' + lcDate
+	.AvailableVersion = 'Object Explorer-3.4.02-08610-' + lcDate
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
@@ -68,7 +68,7 @@ text to lcRegisterWithThor noshow textmerge
 		.CanRunAtStartUp = .F.
 
 * Options for this tool
-		.OptionClasses   = 'clsPublicVariableNameProperties' 
+		.OptionClasses   = 'clsPublicVariableNameProperties, clsTopLevelForm' 
 		.OptionTool      = '<<lcAppName>>'
 
 		.Link = ccLink 
@@ -115,9 +115,12 @@ Procedure GetDefineStatements
 	Local lcDefineStatements
 
 	Text To m.lcDefineStatements Noshow PreText 7
-	#Define ccTool 'Object Explorer'
-	#Define ccKey  'Public Variable Name'
-	#Define CRLF   Chr[13] + chr[10]
+	#Define ccTool 			'Object Explorer'
+	#Define ccKey  			'Public Variable Name'
+	#Define ccKeyTopLevel  	'TopLevel'
+
+	#Define CRLF   			Chr[13] + chr[10]
+
 	EndText 
 	Return Evl(m.lcDefineStatements, '')
 EndProc
@@ -151,10 +154,15 @@ Procedure GetToolCode
 		Endtry
 	Endif
 
-	Do form ('##InstallFolder##Explorer') with m.loObject, , , m.lcPublicVariable
-
+    	If Nvl(Execscript(_Screen.cThorDispatcher, 'Get Option=', ccKeyTopLevel, ccTool), .F.)
+    		Do form (_Screen.cThorFolder + 'Tools\Apps\Object Explorer\ExplorerTopLevel') with m.loObject, , , m.lcPublicVariable
+    	Else
+    		Do form (_Screen.cThorFolder + 'Tools\Apps\Object Explorer\Explorer') with m.loObject, , , m.lcPublicVariable
+    	EndIf
+		
 	EndText 
 	Return Evl(m.lcCode, '')
+
 EndProc
 
 
@@ -180,17 +188,40 @@ Enddefine
 
 ****************************************************************
 ****************************************************************
+Define Class clsTopLevelForm As Custom
+
+	Tool		  = ccTool
+	Key			  = ccKeyTopLevel
+	Value		  = .F.
+	EditClassName = 'clsPublicVariableName'
+
+Enddefine
+
+
+****************************************************************
+****************************************************************
 Define Class clsPublicVariableName As Container
 
 	Procedure Init
 		Local lcBodyMarkup, loRenderEngine
+	
 		loRenderEngine = Execscript(_Screen.cThorDispatcher, 'Class= OptionRenderEngine')
 
 		lcBodyMarkup =										;
-			[   .Class	  = 'Label']						;
+			+ [ .Class = 'Checkbox']						;
+			+ [ .Alignment = 1]								;
+			+ [ .cTool = ccTool]							;
+			+ [ .cKey  = ccKeyTopLevel]						;
+			+ [ .Caption  = 'Top Level Form?']				;
+			+ [ .Left = 200]								;
+			+ [ .Width  = 120]								;
+															;
+			+ [ |]											;
+			+ [ .Class	  = 'Label']						;
 			+ [ .Caption  = 'Public Variable Name']			;
 			+ [ .AutoSize = .T.]							;
 			+ [ .Top	  = (.Top + 8)]						;
+															;
 			+ [ |]											;
 			+ [ .Class = 'TextBox']							;
 			+ [ .cTool = ccTool]							;
@@ -198,6 +229,7 @@ Define Class clsPublicVariableName As Container
 			+ [ .Width = 120]								;
 			+ [ .Row-Increment = 0]							;
 			+ [ .Top = (.Top - 4)]							;
+															;
 			+ [ |]											;
 			+ [ .Class	  = 'Label']						;
 			+ [ .Width    = 300]							;
@@ -227,6 +259,12 @@ Endproc
 Procedure GetReleaseNotes
 
 Text to lcNote NoShow
+
+### 2023-07-29, Version 3.4.02
+
+* New Option to open as Top Level form
+* Fix bug occurring for items in a collections that are scalars
+* Settings file moved to Home(7) + 'ObjectExplorerSettings'
 
 ### 2023-01-13, Version 3.4.01
 
@@ -301,7 +339,7 @@ Text to lcNote NoShow
 
     * InputBox_ShowWindow1: set Desktop to .T. This doesn't affect apps with _screen.Visible =  .T. but does allow it to work when it's .F.
 
-Last changed: _2023/01/13 ![Picture](vfpxpoweredby_alternative.gif)
+Last changed: _2023/01/13_ ![Picture](Images/vfpxpoweredby_alternative.gif)
 
 EndText
 

@@ -16,28 +16,30 @@ DEFINE CLASS frmbrowse AS form
 		*p: _memberdata		&& XML Metadata for customizable properties
 	*</DefinedPropArrayMethod>
 
-	AllowOutput = .F.
-	calias = 
-	Caption = "Form1"
-	cbrowsefont = 
-	DataSession = 2
-	DoCreate = .T.
-	Height = 250
-	lbrowsereadonly = .F.
-	Left = 0
-	Name = "frmbrowse"
-	ndatasession = 0
-	Top = 0
-	Visible = .T.
-	Width = 375
-	WindowState = 1
-	WindowType = 1
-	_memberdata = <VFPData>
-		<memberdata name="ndatasession" display="nDataSession"/>
-		<memberdata name="calias" display="cAlias"/>
-		<memberdata name="lbrowsereadonly" display="lBrowseReadOnly"/>
-		<memberdata name="cbrowsefont" display="cBrowseFont"/>
-		</VFPData>		&& XML Metadata for customizable properties
+	*<PropValue>
+		AllowOutput = .F.
+		calias = 
+		Caption = "Form1"
+		cbrowsefont = 
+		DataSession = 2
+		DoCreate = .T.
+		Height = 250
+		lbrowsereadonly = .F.
+		Left = 0
+		Name = "frmbrowse"
+		ndatasession = 0
+		Top = 0
+		Visible = .T.
+		Width = 375
+		WindowState = 1
+		WindowType = 1
+		_memberdata = <VFPData>
+			<memberdata name="ndatasession" display="nDataSession"/>
+			<memberdata name="calias" display="cAlias"/>
+			<memberdata name="lbrowsereadonly" display="lBrowseReadOnly"/>
+			<memberdata name="cbrowsefont" display="cBrowseFont"/>
+		</VFPData>
+	*</PropValue>
 	
 	PROCEDURE GotFocus
 		This.Hide()
@@ -119,38 +121,40 @@ DEFINE CLASS frmexplorer AS form
 		*p: _memberdata		&& XML Metadata for customizable properties
 	*</DefinedPropArrayMethod>
 
-	AllowOutput = .F.
-	Caption = "Explorer"
-	cdefaultfavorites = caption, controlsource, recordsource, baseclass, class, classlibrary, parentclass, top, left, width, height, text, value, enabled, visible, rowsource, rowsourcetype, datasessionid
-	cformname = 
-	cpublicvariable = 
-	csettingsfilename = (Addbs(Sys(2023)) + 'ExplorerSettings.dbf')
-	DataSession = 2
-	DoCreate = .T.
-	Height = 623
-	KeyPreview = .T.
-	Left = 0
-	Name = "frmexplorer"
-	nmaxtreeviewwidth = 400
-	ShowWindow = 2
-	Top = 0
-	Visible = .T.
-	Width = 623
-	_memberdata = <VFPData>
-		<memberdata name="navigatetoobject" display="NavigateToObject"/>
-		<memberdata name="getsavedproperty" display="GetSavedProperty"/>
-		<memberdata name="opensettingsfile" display="OpenSettingsFile"/>
-		<memberdata name="readsavedsettings" display="ReadSavedSettings"/>
-		<memberdata name="resizecontrols" display="ResizeControls"/>
-		<memberdata name="saveproperty" display="SaveProperty"/>
-		<memberdata name="savesettings" display="SaveSettings"/>
-		<memberdata name="setdatasession" display="SetDataSession"/>
-		<memberdata name="csettingsfilename" display="cSettingsFileName" favorites="True"/>
-		<memberdata name="nmaxtreeviewwidth" display="nMaxTreeViewWidth" favorites="True"/>
-		<memberdata name="cformname" display="cFormName"/>
-		<memberdata name="cdefaultfavorites" display="cDefaultFavorites"/>
-		<memberdata name="cpublicvariable" display="cPublicVariable"/>
-		</VFPData>		&& XML Metadata for customizable properties
+	*<PropValue>
+		AllowOutput = .F.
+		Caption = "Explorer"
+		cdefaultfavorites = caption, controlsource, recordsource, baseclass, class, classlibrary, parentclass, top, left, width, height, text, value, enabled, visible, rowsource, rowsourcetype, datasessionid
+		cformname = 
+		cpublicvariable = 
+		csettingsfilename = (Addbs(Home(7)) + 'ObjectExplorerSettings.dbf')
+		DataSession = 2
+		DoCreate = .T.
+		Height = 623
+		KeyPreview = .T.
+		Left = 0
+		Name = "frmexplorer"
+		nmaxtreeviewwidth = 400
+		ShowWindow = 2
+		Top = 0
+		Visible = .T.
+		Width = 623
+		_memberdata = <VFPData>
+			<memberdata name="navigatetoobject" display="NavigateToObject"/>
+			<memberdata name="getsavedproperty" display="GetSavedProperty"/>
+			<memberdata name="opensettingsfile" display="OpenSettingsFile"/>
+			<memberdata name="readsavedsettings" display="ReadSavedSettings"/>
+			<memberdata name="resizecontrols" display="ResizeControls"/>
+			<memberdata name="saveproperty" display="SaveProperty"/>
+			<memberdata name="savesettings" display="SaveSettings"/>
+			<memberdata name="setdatasession" display="SetDataSession"/>
+			<memberdata name="csettingsfilename" display="cSettingsFileName" favorites="True"/>
+			<memberdata name="nmaxtreeviewwidth" display="nMaxTreeViewWidth" favorites="True"/>
+			<memberdata name="cformname" display="cFormName"/>
+			<memberdata name="cdefaultfavorites" display="cDefaultFavorites"/>
+			<memberdata name="cpublicvariable" display="cPublicVariable"/>
+		</VFPData>
+	*</PropValue>
 
 	ADD OBJECT 'cmdExit' AS commandbutton WITH ;
 		Anchor = 0, ;
@@ -556,24 +560,26 @@ DEFINE CLASS inputbox AS form
 		*p: _memberdata		&& XML Metadata for customizable properties
 	*</DefinedPropArrayMethod>
 
-	AllowOutput = .F.
-	AutoCenter = .T.
-	Caption = "Input Box"
-	ccaption = Prompt
-	DoCreate = .T.
-	Height = 100
-	lcancelled = .F.
-	Name = "inputbox"
-	ShowWindow = 0
-	Width = 375
-	WindowType = 1
-	xvalue = 0
-	_memberdata = <VFPData>
-		<memberdata name="ccaption" display="cCaption"/>
-		<memberdata name="xvalue" display="xValue"/>
-		<memberdata name="lcancelled" display="lCancelled"/>
-		<memberdata name="saveresult" display="SaveResult"/>
-		</VFPData>		&& XML Metadata for customizable properties
+	*<PropValue>
+		AllowOutput = .F.
+		AutoCenter = .T.
+		Caption = "Input Box"
+		ccaption = Prompt
+		DoCreate = .T.
+		Height = 100
+		lcancelled = .F.
+		Name = "inputbox"
+		ShowWindow = 0
+		Width = 375
+		WindowType = 1
+		xvalue = 0
+		_memberdata = <VFPData>
+			<memberdata name="ccaption" display="cCaption"/>
+			<memberdata name="xvalue" display="xValue"/>
+			<memberdata name="lcancelled" display="lCancelled"/>
+			<memberdata name="saveresult" display="SaveResult"/>
+		</VFPData>
+	*</PropValue>
 
 	ADD OBJECT 'cmdQuit' AS commandbutton WITH ;
 		Cancel = .T., ;
@@ -698,32 +704,36 @@ ENDDEFINE
 DEFINE CLASS inputbox_intlf AS inputbox OF "explorer.vcx" 
  	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
 
-	Desktop = .T.
-	DoCreate = .T.
-	MaxButton = .F.
-	MinButton = .F.
-	Name = "inputbox_intlf"
-	ShowWindow = 1
-	Edit2.Name = "Edit2"
-	Label1.Name = "Label1"
-	Text1.Name = "Text1"
-	cmdSave.Name = "cmdSave"
-	cmdQuit.Name = "cmdQuit"
+	*<PropValue>
+		Desktop = .T.
+		DoCreate = .T.
+		MaxButton = .F.
+		MinButton = .F.
+		Name = "inputbox_intlf"
+		ShowWindow = 1
+		Edit2.Name = "Edit2"
+		Label1.Name = "Label1"
+		Text1.Name = "Text1"
+		cmdSave.Name = "cmdSave"
+		cmdQuit.Name = "cmdQuit"
+	*</PropValue>
 
 ENDDEFINE
 
 DEFINE CLASS inputbox_showwindow1 AS inputbox OF "explorer.vcx" 
  	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="Pixels" Uniqueid="" />
 
-	Desktop = .T.
-	DoCreate = .T.
-	Name = "inputbox_showwindow1"
-	ShowWindow = 1
-	Edit2.Name = "Edit2"
-	Label1.Name = "Label1"
-	Text1.Name = "Text1"
-	cmdSave.Name = "cmdSave"
-	cmdQuit.Name = "cmdQuit"
+	*<PropValue>
+		Desktop = .T.
+		DoCreate = .T.
+		Name = "inputbox_showwindow1"
+		ShowWindow = 1
+		Edit2.Name = "Edit2"
+		Label1.Name = "Label1"
+		Text1.Name = "Text1"
+		cmdSave.Name = "cmdSave"
+		cmdQuit.Name = "cmdQuit"
+	*</PropValue>
 
 ENDDEFINE
 
@@ -756,6 +766,7 @@ DEFINE CLASS treecontainer AS container
 		*m: cfavorites_access
 		*m: closetable
 		*m: createcursorforgrid
+		*m: createtagobject
 		*m: dblclickcursor
 		*m: editvalue
 		*m: explore
@@ -836,135 +847,138 @@ DEFINE CLASS treecontainer AS container
 		*p: _memberdata		&& XML Metadata for customizable properties
 	*</DefinedPropArrayMethod>
 
-	Anchor = 15
-	BorderWidth = 0
-	cbrowsefont = 		&& Sets the font to be used when browsing a cursor.
-	ccklkeywordcursor = 
-	ccklkeywordtablename = (Iif(Type('_Screen.Cthorfolder') = 'C', _screen.Cthorfolder + "tools\my tools\keywordlist.dbf", ''))		&& Used when Explorer is used and Thor is not in use (presumably, in Production), returns the name of the table used by Thor's Custom Keyword List.
-	ccollectionitemprefix = Item		&& Used in Treeview for item names in a collection
-	ccursorname = 
-	cdefaultfavorites = caption, controlsource, recordsource, baseclass, class, classlibrary, parentclass, top, left, width, height, text, value, enabled, visible, rowsource, rowsourcetype, datasessionid
-	cfavorites = 
-	cfilter = 
-	cmyfavorites = 		&& My custom list of properties that are Favorites (separated by spaces, commas, or new lines)
-	cskippedobjectnames = 		&& List of object names that I want Explorer to Ignore
-	cversion = 3.4 - 2022/12/26
-	cvfpkeywordcursor = 
-	cvfpkeywordtablename = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL FOXPRO 9\WIZARDS\FDKEYWRD.dbf		&& Used when Explorer is used and Thor is not in use (presumably, in Production), FoxPro's native table for keyword names
-	Height = 623
-	laligninputboxtocursor = .T.
-	lbrowsereadonly = .F.
-	ldblclickreadonly = .F.
-	lfavoritesbold = .T.
-	lhighlightfavorites = .F.
-	lshowcaption = .T.		&& Show Caption in treeview node
-	lshowcontrolsource = .T.		&& Show ControlSource in treeview node
-	lshowcustom = .T.		&& Show Custom properties
-	lshowinherited = .T.		&& Show Inherited properties
-	lshowitems = .T.		&& Indicates the items in a collection should be displayed in the tree.
-	lshowmemberobjects = .T.		&& Indicates that member objects should be displayed in the treeview.
-	lshownative = .T.		&& Show Native properties
-	lshownondefault = .F.
-	lsortfavorites = .F.
-	lsorttreeviewnodes = .T.		&& Sorts TreeView nodes alphabetically
-	lwindowlocked = .F.
-	Name = "treecontainer"
-	nbrowsedatasessionid = 0
-	nfavoritesbackcolor = (RGB(255, 255, 128))
-	nfontsize = 9
-	nmaxcharacterwidth = 200
-	nmousebutton = 0
-	ocurrentnode = .NULL.
-	ofirstobject = .NULL.		&& Stores an object reference to the top most object in the treeview.
-	ofixcase = .NULL.
-	Width = 623
-	_memberdata = <VFPData>
-		<memberdata name="addtoobjectlist" display="AddToObjectList"/>
-		<memberdata name="dblclickcursor" display="DblClickCursor"/>
-		<memberdata name="fillgridwithproperties" display="FillGridWithProperties"/>
-		<memberdata name="getnodefor" display="GetNodeFor"/>
-		<memberdata name="getnodetext" display="GetNodeText" favorites="True"/>
-		<memberdata name="getobjectreference" display="GetObjectReference"/>
-		<memberdata name="getsavedproperty" display="GetSavedProperty"/>
-		<memberdata name="haschildobjects" display="HasChildObjects"/>
-		<memberdata name="loadchildobjects" display="LoadChildObjects"/>
-		<memberdata name="loadcollectionitems" display="LoadCollectionItems"/>
-		<memberdata name="loadobject" display="LoadObject"/>
-		<memberdata name="loadotherobjects" display="LoadOtherObjects"/>
-		<memberdata name="navigatetoobject" display="NavigateToObject"/>
-		<memberdata name="newnode" display="NewNode"/>
-		<memberdata name="resizecontrols" display="ResizeControls"/>
-		<memberdata name="saveproperty" display="SaveProperty"/>
-		<memberdata name="transformcharacter" display="TransformCharacter" favorites="True"/>
-		<memberdata name="aobjectlist" display="aObjectList"/>
-		<memberdata name="ccursorname" display="cCursorName"/>
-		<memberdata name="cversion" display="cVersion"/>
-		<memberdata name="lshowitems" display="lShowItems"/>
-		<memberdata name="lshowmemberobjects" display="lShowMemberObjects"/>
-		<memberdata name="lsorttreeviewnodes" display="lSortTreeViewNodes" favorites="True"/>
-		<memberdata name="nfontsize" display="nFontSize" favorites="True"/>
-		<memberdata name="ocurrentnode" display="oCurrentNode"/>
-		<memberdata name="ocurrentnode_access" display="oCurrentNode_Access"/>
-		<memberdata name="ofirstobject" display="oFirstObject"/>
-		<memberdata name="explore" display="Explore"/>
-		<memberdata name="lshowcaption" display="lShowCaption" favorites="True"/>
-		<memberdata name="lshowcontrolsource" display="lShowControlSource" favorites="True"/>
-		<memberdata name="ccollectionitemprefix" display="cCollectionItemPrefix" favorites="True"/>
-		<memberdata name="lshowcustom" display="lShowCustom"/>
-		<memberdata name="lshowinherited" display="lShowInherited"/>
-		<memberdata name="lshownative" display="lShowNative"/>
-		<memberdata name="lshownondefault" display="lShowNonDefault"/>
-		<memberdata name="getcollectionnodename" display="GetCollectionNodeName" favorites="True"/>
-		<memberdata name="sortnode" display="SortNode"/>
-		<memberdata name="about" display="About"/>
-		<memberdata name="fixcaseofproperty" display="FixCaseofProperty"/>
-		<memberdata name="ofixcase" display="oFixCase"/>
-		<memberdata name="locktreeview" display="LockTreeView"/>
-		<memberdata name="lwindowlocked" display="lWindowLocked"/>
-		<memberdata name="fillgridwitharray" display="FillGridWithArray"/>
-		<memberdata name="cskippedobjectnames" display="cSkippedObjectNames" favorites="True"/>
-		<memberdata name="createcursorforgrid" display="CreateCursorForGrid"/>
-		<memberdata name="setupgridcolumns" display="SetupGridColumns"/>
-		<memberdata name="zapcursor" display="ZapCursor"/>
-		<memberdata name="refreshgrid" display="RefreshGrid"/>
-		<memberdata name="pemstatusfails" display="PemstatusFails"/>
-		<memberdata name="cvfpkeywordtablename" display="cVFPKeywordTableName" favorites="True"/>
-		<memberdata name="ccklkeywordtablename" display="cCKLKeywordTableName" favorites="True"/>
-		<memberdata name="cvfpkeywordcursor" display="cVFPKeywordCursor"/>
-		<memberdata name="ccklkeywordcursor" display="cCKLKeywordCursor"/>
-		<memberdata name="usekeywordtable" display="UseKeywordTable"/>
-		<memberdata name="closetable" display="CloseTable"/>
-		<memberdata name="lsortfavorites" display="lSortFavorites"/>
-		<memberdata name="lfavoritesbold" display="lFavoritesBold" favorites="True"/>
-		<memberdata name="nfavoritesbackcolor" display="nFavoritesBackColor" favorites="True"/>
-		<memberdata name="nmaxcharacterwidth" display="nMaxCharacterWidth"/>
-		<memberdata name="inputbox" display="InputBox"/>
-		<memberdata name="browsecursor" display="BrowseCursor"/>
-		<memberdata name="browse" display="Browse"/>
-		<memberdata name="ldblclickreadonly" display="lDblClickReadOnly" favorites="True"/>
-		<memberdata name="lbrowsereadonly" display="lBrowseReadOnly" favorites="True"/>
-		<memberdata name="cbrowsefont" display="cBrowseFont" favorites="True"/>
-		<memberdata name="cfilter" display="cFilter"/>
-		<memberdata name="width" display="Width"/>
-		<memberdata name="skippropertyname" display="SkipPropertyName"/>
-		<memberdata name="laligninputboxtocursor" display="lAlignInputBoxToCursor" favorites="True"/>
-		<memberdata name="cdefaultfavorites" display="cDefaultFavorites"/>
-		<memberdata name="cfavorites" display="cFavorites"/>
-		<memberdata name="cfavorites_access" display="cFavorites_Access"/>
-		<memberdata name="cmyfavorites" display="cMyFavorites" favorites="True"/>
-		<memberdata name="getbrowsecursorname" display="GetBrowseCursorName" favorites="True"/>
-		<memberdata name="nbrowsedatasessionid" display="nBrowseDataSessionID"/>
-		<memberdata name="logchange" display="LogChange" favorites="True"/>
-		<memberdata name="onobjectreleased" display="OnObjectReleased"/>
-		<memberdata name="lhighlightfavorites" display="lHighlightFavorites"/>
-		<memberdata name="setfavoritehighlighting" display="SetFavoriteHighlighting"/>
-		<memberdata name="gridrightclick" display="GridRightClick"/>
-		<memberdata name="editvalue" display="EditValue"/>
-		<memberdata name="togglefavorite" display="ToggleFavorite"/>
-		<memberdata name="nmousebutton" display="nMouseButton"/>
-		<memberdata name="treeviewrightclick" display="TreeViewRightClick"/>
-		<memberdata name="assignpublicvariable" display="AssignPublicVariable"/>
-		</VFPData>		&& XML Metadata for customizable properties
+	*<PropValue>
+		Anchor = 15
+		BorderWidth = 0
+		cbrowsefont = 
+		ccklkeywordcursor = 
+		ccklkeywordtablename = (Iif(Type('_Screen.Cthorfolder') = 'C', _screen.Cthorfolder + "tools\my tools\keywordlist.dbf", ''))
+		ccollectionitemprefix = Item
+		ccursorname = 
+		cdefaultfavorites = caption, controlsource, recordsource, baseclass, class, classlibrary, parentclass, top, left, width, height, text, value, enabled, visible, rowsource, rowsourcetype, datasessionid
+		cfavorites = 
+		cfilter = 
+		cmyfavorites = 
+		cskippedobjectnames = 
+		cversion = 3.4 - 2022/12/26
+		cvfpkeywordcursor = 
+		cvfpkeywordtablename = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL FOXPRO 9\WIZARDS\FDKEYWRD.dbf
+		Height = 623
+		laligninputboxtocursor = .T.
+		lbrowsereadonly = .F.
+		ldblclickreadonly = .F.
+		lfavoritesbold = .T.
+		lhighlightfavorites = .F.
+		lshowcaption = .T.
+		lshowcontrolsource = .T.
+		lshowcustom = .T.
+		lshowinherited = .T.
+		lshowitems = .T.
+		lshowmemberobjects = .T.
+		lshownative = .T.
+		lshownondefault = .F.
+		lsortfavorites = .F.
+		lsorttreeviewnodes = .T.
+		lwindowlocked = .F.
+		Name = "treecontainer"
+		nbrowsedatasessionid = 0
+		nfavoritesbackcolor = (RGB(255, 255, 128))
+		nfontsize = 9
+		nmaxcharacterwidth = 200
+		nmousebutton = 0
+		ocurrentnode = .NULL.
+		ofirstobject = .NULL.
+		ofixcase = .NULL.
+		Width = 623
+		_memberdata = <VFPData>
+			<memberdata name="addtoobjectlist" display="AddToObjectList"/>
+			<memberdata name="dblclickcursor" display="DblClickCursor"/>
+			<memberdata name="fillgridwithproperties" display="FillGridWithProperties"/>
+			<memberdata name="getnodefor" display="GetNodeFor"/>
+			<memberdata name="getnodetext" display="GetNodeText" favorites="True"/>
+			<memberdata name="getobjectreference" display="GetObjectReference"/>
+			<memberdata name="getsavedproperty" display="GetSavedProperty"/>
+			<memberdata name="haschildobjects" display="HasChildObjects"/>
+			<memberdata name="loadchildobjects" display="LoadChildObjects"/>
+			<memberdata name="loadcollectionitems" display="LoadCollectionItems"/>
+			<memberdata name="loadobject" display="LoadObject"/>
+			<memberdata name="loadotherobjects" display="LoadOtherObjects"/>
+			<memberdata name="navigatetoobject" display="NavigateToObject"/>
+			<memberdata name="newnode" display="NewNode"/>
+			<memberdata name="resizecontrols" display="ResizeControls"/>
+			<memberdata name="saveproperty" display="SaveProperty"/>
+			<memberdata name="transformcharacter" display="TransformCharacter" favorites="True"/>
+			<memberdata name="aobjectlist" display="aObjectList"/>
+			<memberdata name="ccursorname" display="cCursorName"/>
+			<memberdata name="cversion" display="cVersion"/>
+			<memberdata name="lshowitems" display="lShowItems"/>
+			<memberdata name="lshowmemberobjects" display="lShowMemberObjects"/>
+			<memberdata name="lsorttreeviewnodes" display="lSortTreeViewNodes" favorites="True"/>
+			<memberdata name="nfontsize" display="nFontSize" favorites="True"/>
+			<memberdata name="ocurrentnode" display="oCurrentNode"/>
+			<memberdata name="ocurrentnode_access" display="oCurrentNode_Access"/>
+			<memberdata name="ofirstobject" display="oFirstObject"/>
+			<memberdata name="explore" display="Explore"/>
+			<memberdata name="lshowcaption" display="lShowCaption" favorites="True"/>
+			<memberdata name="lshowcontrolsource" display="lShowControlSource" favorites="True"/>
+			<memberdata name="ccollectionitemprefix" display="cCollectionItemPrefix" favorites="True"/>
+			<memberdata name="lshowcustom" display="lShowCustom"/>
+			<memberdata name="lshowinherited" display="lShowInherited"/>
+			<memberdata name="lshownative" display="lShowNative"/>
+			<memberdata name="lshownondefault" display="lShowNonDefault"/>
+			<memberdata name="getcollectionnodename" display="GetCollectionNodeName" favorites="True"/>
+			<memberdata name="sortnode" display="SortNode"/>
+			<memberdata name="about" display="About"/>
+			<memberdata name="fixcaseofproperty" display="FixCaseofProperty"/>
+			<memberdata name="ofixcase" display="oFixCase"/>
+			<memberdata name="locktreeview" display="LockTreeView"/>
+			<memberdata name="lwindowlocked" display="lWindowLocked"/>
+			<memberdata name="fillgridwitharray" display="FillGridWithArray"/>
+			<memberdata name="cskippedobjectnames" display="cSkippedObjectNames" favorites="True"/>
+			<memberdata name="createcursorforgrid" display="CreateCursorForGrid"/>
+			<memberdata name="setupgridcolumns" display="SetupGridColumns"/>
+			<memberdata name="zapcursor" display="ZapCursor"/>
+			<memberdata name="refreshgrid" display="RefreshGrid"/>
+			<memberdata name="pemstatusfails" display="PemstatusFails"/>
+			<memberdata name="cvfpkeywordtablename" display="cVFPKeywordTableName" favorites="True"/>
+			<memberdata name="ccklkeywordtablename" display="cCKLKeywordTableName" favorites="True"/>
+			<memberdata name="cvfpkeywordcursor" display="cVFPKeywordCursor"/>
+			<memberdata name="ccklkeywordcursor" display="cCKLKeywordCursor"/>
+			<memberdata name="usekeywordtable" display="UseKeywordTable"/>
+			<memberdata name="closetable" display="CloseTable"/>
+			<memberdata name="lsortfavorites" display="lSortFavorites"/>
+			<memberdata name="lfavoritesbold" display="lFavoritesBold" favorites="True"/>
+			<memberdata name="nfavoritesbackcolor" display="nFavoritesBackColor" favorites="True"/>
+			<memberdata name="nmaxcharacterwidth" display="nMaxCharacterWidth"/>
+			<memberdata name="inputbox" display="InputBox"/>
+			<memberdata name="browsecursor" display="BrowseCursor"/>
+			<memberdata name="browse" display="Browse"/>
+			<memberdata name="ldblclickreadonly" display="lDblClickReadOnly" favorites="True"/>
+			<memberdata name="lbrowsereadonly" display="lBrowseReadOnly" favorites="True"/>
+			<memberdata name="cbrowsefont" display="cBrowseFont" favorites="True"/>
+			<memberdata name="cfilter" display="cFilter"/>
+			<memberdata name="width" display="Width"/>
+			<memberdata name="skippropertyname" display="SkipPropertyName"/>
+			<memberdata name="laligninputboxtocursor" display="lAlignInputBoxToCursor" favorites="True"/>
+			<memberdata name="cdefaultfavorites" display="cDefaultFavorites"/>
+			<memberdata name="cfavorites" display="cFavorites"/>
+			<memberdata name="cfavorites_access" display="cFavorites_Access"/>
+			<memberdata name="cmyfavorites" display="cMyFavorites" favorites="True"/>
+			<memberdata name="getbrowsecursorname" display="GetBrowseCursorName" favorites="True"/>
+			<memberdata name="nbrowsedatasessionid" display="nBrowseDataSessionID"/>
+			<memberdata name="logchange" display="LogChange" favorites="True"/>
+			<memberdata name="onobjectreleased" display="OnObjectReleased"/>
+			<memberdata name="lhighlightfavorites" display="lHighlightFavorites"/>
+			<memberdata name="setfavoritehighlighting" display="SetFavoriteHighlighting"/>
+			<memberdata name="gridrightclick" display="GridRightClick"/>
+			<memberdata name="editvalue" display="EditValue"/>
+			<memberdata name="togglefavorite" display="ToggleFavorite"/>
+			<memberdata name="nmousebutton" display="nMouseButton"/>
+			<memberdata name="treeviewrightclick" display="TreeViewRightClick"/>
+			<memberdata name="assignpublicvariable" display="AssignPublicVariable"/>
+			<memberdata name="createtagobject" display="CreateTagObject"/>
+		</VFPData>
+	*</PropValue>
 
 	ADD OBJECT 'chklHighlightFavorites' AS checkbox WITH ;
 		Alignment = 0, ;
@@ -1113,7 +1127,7 @@ DEFINE CLASS treecontainer AS container
 		Name = "oleTree", ;
 		Top = 8, ;
 		Width = 199
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGB0IY4NJdkBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAXDwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFACDiyAACAGUAAAAAAAUAAIA86RkAAQAAAFwAH97svQEABQCE6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/EqVIv9kBAwAAAIACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAFcBAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAAJAAAA/v////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAACRFAAAXDwAALE8wWoBAAYAIgAAAHkATQDcAQAASgBvAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTF5AHMAdABlAG0AMwAyAFwAaQBuAGUAdABzAHIAdgBcAGMAbgABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAJBVwgACAGUAAAAAAAUAAIBE6RkAAQAAAFwAH97svQEABQCM6RkARgBCADYANgA3ADgAQgB9ACAAQwA6AAAAMkAKAAAATGFiZWxFZGl0AAkAAABJCgAAAAEAAAAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAAsAAABBcHBlYXJhbmNlAAkAAABJCgAAAAAAAAAOAAAARnVsbFJvd1NlbGVjdAAFAAAATAEAAAAKAAAAU2luZ2xlU2VsAAUAAABMAAAAAH//f/9//38AAAAAAAAYIB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAkAkQEPAFdIQVRTVEhJU0hFTFBJRABwBRYAcAUWAC4AVgGVAQgAwCFYJ/whHgBIIh4AcCxYJwAAAAABAAAAAABzACg0WCcYNFgn+DNYJ7gjHgAYIB4AAAAAAG4AcwAAAGUAYwB0AG8AcgAuAHMAAAAAADYAAADQ2x0AlNwdAFAWXCdAFlwnAAAAAADAWEQAAABAaQBvAAAAcwBcAGMAbwBsAGwAZQAAAHQAaQBvAG4AaQBuAHMAwCFYJ4wiHgDYIh4AcCxYJwEAAAAeAAAAAAAAACg0WCcYNFgn+DNYJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ2x0AAAAAAFgYXCdIGFwnAAAAAAAAAAAAAAAAAAAAAP////8AAAAAAAAAAAAAAADAIVgnDCMeAEgjHgBwLFgnAQAAAB8AAAAAAAAAQCJYJyAiWCcAAAAAAAAAAAAAAAAAAAAAAAAAAEgiHgAAAAAA" />
 
 	ADD OBJECT 'oPropGrid' AS grid WITH ;
 		Anchor = 45, ;
@@ -1342,6 +1356,19 @@ DEFINE CLASS treecontainer AS container
 		
 	ENDPROC
 
+	PROCEDURE createtagobject
+		Local loTag As 'Empty'
+		
+		loTag = Createobject('Empty')
+		
+		AddProperty(m.loTag, 'ObjectID')
+		AddProperty(m.loTag, 'Path', 		'')
+		AddProperty(m.loTag, 'IsScalar', 	.F.)
+		AddProperty(m.loTag, 'Value', 		Null)
+		
+		Return m.loTag
+	ENDPROC
+
 	PROCEDURE dblclickcursor
 		Local lcCursor, lcFullObjectPath, lcPropName, lcPropVal, lcType, llOK, loException, loObject
 		Local lxNewValue, lxValue
@@ -1539,75 +1566,85 @@ DEFINE CLASS treecontainer AS container
 		Local laPEMs[1], lcCursorName, lcPropName, lcPropRef, lcPropType, lcPropVal, llArray, lnCols, lnI
 		Local lnRows, loItem, lxValue
 		
-		loItem = This.GetObjectReference(m.toNode)
-		
 		lcCursorName = This.ZapCursor()
 		
-		If Not Isnull(m.loItem)
-			For lnI = 1 To Amembers(laPEMs, m.loItem)
-				lcPropName = This.FixCaseofProperty(m.laPEMs[m.lnI])
-				lcPropRef  = 'loItem.' + m.laPEMs[m.lnI]
+		If m.toNode.Tag.IsScalar
 		
-				If This.SkipPropertyName(m.loItem, m.lcPropName)
-					Loop
-				Endif
-		
-				Try
-					lxValue	   = Evaluate(m.lcPropRef)
-					lcPropVal  = Transform(m.lxValue)
-					lcPropType = Type(m.lcPropRef)
-					Do Case
-						Case Isnull(m.lxValue)
-							lcPropVal = 'Null'
-						Case m.lcPropType = 'C'
-							lcPropVal = This.TransformCharacter(m.lxValue)
-					Endcase
-				Catch
-					* This occurs when a property that would normally reference an object,
-					* such as parent, does not return an object reference.
-					*** JRN 2017-11-19
-					*	or when the property value has an access method that fails
-					*	and change the display of such values
-					lcPropVal  = '*** Error getting value ***'
-					lcPropType = '?'
-				Endtry
-		
-				*** JRN 2017-11-22 : array?
-				Try
-					llArray = Type(m.lcPropRef, 1) = [A]
-				Catch
-					llArray = .F.
-				Endtry
-		
-				If m.llArray
-					lnRows	   = Alen(&lcPropRef, 1)
-					lnCols	   = Alen(&lcPropRef, 2)
-					lcPropName = m.lcPropName + '[' + Transform(m.lnRows) + Iif(m.lnCols > 0, ', ' + Transform(m.lnCols), '') + ']'
-					lcPropType = 'A'
-					lcPropVal  = '<Array>'
-				Endif
-		
-				Insert Into (m.lcCursorName) (Name, Type, Value) Values (m.lcPropName, m.lcPropType, m.lcPropVal)
-			Next
-		Endif
-		
-		Update  GridCursor Set Favorite = .T.										;
-			From (This.cCursorName)    As  GridCursor								;
-				Join SettingsFile													;
-					On Upper(GridCursor.Name) = Upper(SettingsFile.Property)		;
-					And SettingsFile.Type = 1										;
-			Where SettingsFile.BitValue = .T.
-		
-		Select (This.cCursorName)
-		If This.lSortFavorites
-			Set Order To Favorites
+			Insert Into (m.lcCursorName)		;
+				(Type, Value)					;
+				Values							;
+				(Vartype(m.toNode.Tag.Value), m.toNode.Tag.Value)
 		Else
-			Set Order To
-		Endif
 		
-		This.txtFullPath.Value = Chrtran(m.toNode.Tag.Path, ' ', '')
+			loItem = This.GetObjectReference(m.toNode)
 		
-		This.SetFavoriteHighlighting()
+			If Not Isnull(m.loItem)
+				For lnI = 1 To Amembers(laPEMs, m.loItem)
+					lcPropName = This.FixCaseofProperty(m.laPEMs[m.lnI])
+					lcPropRef  = 'loItem.' + m.laPEMs[m.lnI]
+		
+					If This.SkipPropertyName(m.loItem, m.lcPropName)
+						Loop
+					Endif
+		
+					Try
+						lxValue	   = Evaluate(m.lcPropRef)
+						lcPropVal  = Transform(m.lxValue)
+						lcPropType = Type(m.lcPropRef)
+						Do Case
+							Case Isnull(m.lxValue)
+								lcPropVal = 'Null'
+							Case m.lcPropType = 'C'
+								lcPropVal = This.TransformCharacter(m.lxValue)
+						Endcase
+					Catch
+						* This occurs when a property that would normally reference an object,
+						* such as parent, does not return an object reference.
+						*** JRN 2017-11-19
+						*	or when the property value has an access method that fails
+						*	and change the display of such values
+						lcPropVal  = '*** Error getting value ***'
+						lcPropType = '?'
+					Endtry
+		
+					*** JRN 2017-11-22 : array?
+					Try
+						llArray = Type(m.lcPropRef, 1) = [A]
+					Catch
+						llArray = .F.
+					Endtry
+		
+					If m.llArray
+						lnRows	   = Alen(&lcPropRef, 1)
+						lnCols	   = Alen(&lcPropRef, 2)
+						lcPropName = m.lcPropName + '[' + Transform(m.lnRows) + Iif(m.lnCols > 0, ', ' + Transform(m.lnCols), '') + ']'
+						lcPropType = 'A'
+						lcPropVal  = '<Array>'
+					Endif
+		
+					Insert Into (m.lcCursorName) (Name, Type, Value) Values (m.lcPropName, m.lcPropType, m.lcPropVal)
+				Next
+			Endif
+		
+			Update  GridCursor Set Favorite = .T.										;
+				From (This.cCursorName)    As  GridCursor								;
+					Join SettingsFile													;
+						On Upper(GridCursor.Name) = Upper(SettingsFile.Property)		;
+						And SettingsFile.Type = 1										;
+				Where SettingsFile.BitValue = .T.
+		
+			Select (This.cCursorName)
+			If This.lSortFavorites
+				Set Order To Favorites
+			Else
+				Set Order To
+			Endif
+		
+			This.txtFullPath.Value = Chrtran(m.toNode.Tag.Path, ' ', '')
+		
+			This.SetFavoriteHighlighting()
+		
+		Endif && tonode.Tag.IsScalar
 		
 		This.RefreshGrid()
 		
@@ -1659,6 +1696,9 @@ DEFINE CLASS treecontainer AS container
 					  0 + 16, Thisform.Caption)
 				Thisform.Release()
 				*** DH 2022-03-04: end of new code
+				
+				*** JRN 2023-07-25 : Scalar
+			Case Vartype(m.loCurrentObject) # 'O'
 		
 				* current node has own data session and cAlias
 			Case Pemstatus(m.loCurrentObject, 'DataSessionID', 5)
@@ -1975,7 +2015,7 @@ DEFINE CLASS treecontainer AS container
 			toObject,		;
 			toParentNode
 		
-		Local lcName, lnI, loNode, lvItem
+		Local lcName, lnI, loNode, loTag, lvItem
 		
 		If This.lShowItems And Type([toObject.Count]) = [N] And m.toObject.Count > 0
 			Try
@@ -1987,7 +2027,13 @@ DEFINE CLASS treecontainer AS container
 					Else
 						loNode		  = This.NewNode()
 						loNode.Parent = m.toParentNode
-						loNode.Text	  = Transform(m.lvItem)
+						loNode.Text	  = This.GetCollectionNodeName(, , , m.lnI)  + ' = ' + Left(Transform(m.lvItem), 25)
+		
+						loTag		   = This.CreateTagObject()
+						loTag.IsScalar = .T.
+						loTag.Value	   = m.lvItem
+		
+						loNode.Tag	= m.loTag
 					Endif
 				Next
 			Catch
@@ -2004,9 +2050,7 @@ DEFINE CLASS treecontainer AS container
 		Local lcName, lcNodeText, loDummyNode, loException, loNode
 		
 		With This
-			loTag = Createobject('Empty')
-			AddProperty(m.loTag, 'ObjectID')
-			AddProperty(m.loTag, 'Path', '')
+			loTag = This.CreateTagObject()
 		
 			If Isnull(.oFirstObject)
 				.oFirstObject = m.toObject
