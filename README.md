@@ -1,6 +1,6 @@
 # Object Explorer
 
-Version 3.4.02 Released 2023/07/29
+Version 3.5 Released 2023/08/11
 
 [What's new in this release](Change%20Log.md)
 
@@ -28,13 +28,16 @@ The trick to making this a really valuable tool was to find the following unexpe
 On Key Label F9 Do Form Explorer with Sys(1270)
 ```
 
-You can invoke Explorer at any time by hovering over any object in any form and using the hot key, and Explorer will open for that object and the form it belongs to.
-
 We find that this is invaluable in Production; it also works in IDE the same way although we do not use it there as often.
+
+In the IDE, you can invoke Explorer in a few different ways:
+* If the active window is a code window (including the command window), highlight any object (or click within the object name) and use the hot key to explore that object.
+* Hover over any object in any form and use the hot key to explore that object and the form it belongs to.
+* If neither of these apply, use the hot key to explore the currently selected object in the form or class being edited (that is, the object that would appear in the Properties Window.)
 
 There are also some very pleasant unanticipated uses. Try any of these:
 
-* Do Form Explorer_Modal with _Screen
+* `Do Form Explorer with _Screen`
 
 * Using the hotkey over a form in the IDE, such as GoFish, PEMEditor, or Thor, will let you view their insides. Since Explorer is a form as well, you get use it to spy on itself.
 

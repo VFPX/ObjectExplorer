@@ -1,12 +1,13 @@
 Lparameters toUpdateObject
 Local lcDate, ldDate
 
-lcDate = '20230729'
+lcDate = '20230811'
 
 With m.toUpdateObject
-	.VersionNumber    = '3.4.02 - ' + lcDate
+	.VersionNumber    = '3.5 - ' + lcDate
+	.AppID            = 'ObjectExplorer'
 
-	.AvailableVersion = 'Object Explorer-3.4.02-08610-' + lcDate
+	.AvailableVersion = 'Object Explorer-3.5-08623-' + lcDate
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
@@ -115,11 +116,14 @@ Procedure GetDefineStatements
 	Local lcDefineStatements
 
 	Text To m.lcDefineStatements Noshow PreText 7
-	#Define ccTool 			'Object Explorer'
-	#Define ccKey  			'Public Variable Name'
-	#Define ccKeyTopLevel  	'TopLevel'
+#Define ccTool 			'Object Explorer'
+#Define ccKey  			'Public Variable Name'
+#Define ccKeyTopLevel  	'TopLevel'
 
-	#Define CRLF   			Chr[13] + chr[10]
+#Define CRLF   			Chr[13] + chr[10]
+
+#Define ccHomeFolder 	_Screen.cThorFolder + 'Tools\Apps\Object Explorer\'
+
 
 	EndText 
 	Return Evl(m.lcDefineStatements, '')
@@ -132,33 +136,58 @@ Procedure GetToolCode
 	Local lcCode
 
 	Text To m.lcCode Noshow
-	Local lcPublicVariable, loException, loObject
+	Local lcHighLightedText, lcObjectName, lcPublicVariable, lo_Exception, lo_Object
+	Local lo_ObjectUnderMouse, lo_Objects[1]
 
-	If Vartype(m.lxParam1) = 'O'
-		loObject = m.lxParam1
-	Else
-		loObject = Sys(1270)
-		If Vartype(m.loObject) # 'O'
-			Return
-		Endif
-	Endif
+	lo_ObjectUnderMouse	= Sys(1270)
+	lcHighLightedText	= Execscript(_Screen.cThorDispatcher, 'Thor_Proc_GetHighlightedText', 'Object Name')
+	lcObjectName		= ''
 
+	* ================================================================================ 
+	* Find the object to explore
+	Do Case
+	
+			* object passed in as parameter
+		Case Vartype(m.lxParam1) = 'O'
+			lo_Object = m.lxParam1
+
+			* active window is a code window and highlighted text is the name of an object
+		Case (Not Empty(m.lcHighLightedText))		;
+				And Type(m.lcHighLightedText) = 'O'
+			lo_Object	 = &lcHighLightedText
+			lcObjectName = m.lcHighLightedText
+
+			* take the object under the mouse (if any)
+		Case Vartype(m.lo_ObjectUnderMouse) = 'O'
+			lo_Object = m.lo_ObjectUnderMouse
+
+			* the current selected object being edited (as appears in Property Window)
+		Case 0 # Aselobj(lo_Objects) Or 0 # Aselobj(lo_Objects, 1)
+			lo_Object	= m.lo_Objects[1]
+
+		Otherwise
+			Return .F.
+
+	Endcase
+
+	* ================================================================================ 
+	
 	lcPublicVariable = Nvl(Execscript(_Screen.cThorDispatcher, 'Get Option=', ccKey, ccTool), '')
 	If Not Empty(m.lcPublicVariable)
 		Try
-			Release &lcPublicVariable
+			Release m.&lcPublicVariable
 			Public &lcPublicVariable
-			&lcPublicVariable = m.loObject
-		Catch To m.loException
+			&lcPublicVariable = m.lo_Object
+		Catch To m.lo_Exception
 			lcPublicVariable = ''
 		Endtry
 	Endif
 
-    	If Nvl(Execscript(_Screen.cThorDispatcher, 'Get Option=', ccKeyTopLevel, ccTool), .F.)
-    		Do form (_Screen.cThorFolder + 'Tools\Apps\Object Explorer\ExplorerTopLevel') with m.loObject, , , m.lcPublicVariable
-    	Else
-    		Do form (_Screen.cThorFolder + 'Tools\Apps\Object Explorer\Explorer') with m.loObject, , , m.lcPublicVariable
-    	EndIf
+	If Nvl(Execscript(_Screen.cThorDispatcher, 'Get Option=', ccKeyTopLevel, ccTool), .F.)
+		Do Form (ccHomeFolder + '\ExplorerTopLevel') With m.lo_Object, m.lcObjectName, , m.lcPublicVariable
+	Else
+		Do Form (ccHomeFolder + '\Explorer') With m.lo_Object, m.lcObjectName, , m.lcPublicVariable
+	Endif
 		
 	EndText 
 	Return Evl(m.lcCode, '')
@@ -259,6 +288,13 @@ Endproc
 Procedure GetReleaseNotes
 
 Text to lcNote NoShow
+
+### 2023-08-11, Version 3.5
+
+Changes to how Object Explorer can be used in the IDE:
+* If the active window is a code window (including the command window), highlight any object (or click within the object name) and use the hot key to explore that object.
+* Hover over any object in any form and use the hot key to explore that object and the form it belongs to.
+* If neither of these apply, use the hot key to explore the currently selected object in the form or class being edited (that is, the object that would appear in the Properties Window.)
 
 ### 2023-07-29, Version 3.4.02
 
