@@ -55,6 +55,7 @@ text to lcRegisterWithThor noshow textmerge
 
 * Required properties.
 
+		.AppID      = 'ObjectExplorer'
 		.PRGName    = 'Thor_Tool_ObjectExplorer'
 		.FolderName = '##InstallFolder##'
 		.Prompt     = '<<lcAppName>>'
