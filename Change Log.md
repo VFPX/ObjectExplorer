@@ -1,4 +1,11 @@
 
+### 2023-08-11, Version 3.5
+
+Changes to how Object Explorer can be used in the IDE:
+* If the active window is a code window (including the command window), highlight any object (or click within the object name) and use the hot key to explore that object.
+* Hover over any object in any form and use the hot key to explore that object and the form it belongs to.
+* If neither of these apply, use the hot key to explore the currently selected object in the form or class being edited (that is, the object that would appear in the Properties Window.)
+
 ### 2023-07-29, Version 3.4.02
 
 * New Option to open as Top Level form
