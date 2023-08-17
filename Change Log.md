@@ -1,4 +1,8 @@
 
+### 2023-08-17, Version 3.51
+
+Additional use: If in the Command Window or a code window and no object indicated, paste into the command window a call to OE.
+
 ### 2023-08-11, Version 3.5
 
 Changes to how Object Explorer can be used in the IDE:

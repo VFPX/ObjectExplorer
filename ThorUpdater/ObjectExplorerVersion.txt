@@ -1,13 +1,13 @@
 Lparameters toUpdateObject
 Local lcDate, ldDate
 
-lcDate = '20230811'
+lcDate = '20230817'
 
 With m.toUpdateObject
-	.VersionNumber    = '3.5 - ' + lcDate
+	.VersionNumber    = '3.51 - ' + lcDate
 	.AppID            = 'ObjectExplorer'
 
-	.AvailableVersion = 'Object Explorer-3.5-08623-' + lcDate
+	.AvailableVersion = 'Object Explorer-3.51-08629-' + lcDate
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
@@ -137,17 +137,17 @@ Procedure GetToolCode
 	Local lcCode
 
 	Text To m.lcCode Noshow
-	Local lcHighLightedText, lcObjectName, lcPublicVariable, lo_Exception, lo_Object
+	Local lcForm, lcHighLightedText, lcObjectName, lcPublicVariable, lo_Exception, lo_Object
 	Local lo_ObjectUnderMouse, lo_Objects[1]
 
 	lo_ObjectUnderMouse	= Sys(1270)
 	lcHighLightedText	= Execscript(_Screen.cThorDispatcher, 'Thor_Proc_GetHighlightedText', 'Object Name')
 	lcObjectName		= ''
 
-	* ================================================================================ 
+	* ================================================================================
 	* Find the object to explore
 	Do Case
-	
+
 			* object passed in as parameter
 		Case Vartype(m.lxParam1) = 'O'
 			lo_Object = m.lxParam1
@@ -167,7 +167,11 @@ Procedure GetToolCode
 			lo_Object	= m.lo_Objects[1]
 
 		Otherwise
-			Return .F.
+			lcForm = ccHomeFolder + '\Explorer'
+			If ' ' $ m.lcForm
+				lcForm = ['] + m.lcForm + [']
+			Endif
+			Keyboard '{CTRL+F2}Do Form ' + m.lcForm + ' with '
 
 	Endcase
 
@@ -289,6 +293,10 @@ Endproc
 Procedure GetReleaseNotes
 
 Text to lcNote NoShow
+
+### 2023-08-17, Version 3.51
+
+Additional use: If in the Command Window or a code window and no object indicated, paste into the command window a call to OE.
 
 ### 2023-08-11, Version 3.5
 
