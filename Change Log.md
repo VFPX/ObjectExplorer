@@ -1,4 +1,8 @@
 
+### 2023-09-28, Version 3.51.01
+
+Fix bug if called with object based on Empty class
+
 ### 2023-08-17, Version 3.51
 
 Additional use: If in the Command Window or a code window and no object indicated, paste into the command window a call to OE.
