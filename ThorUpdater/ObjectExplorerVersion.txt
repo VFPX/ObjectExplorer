@@ -1,13 +1,13 @@
 Lparameters toUpdateObject
 Local lcDate, ldDate
 
-lcDate = '20230817'
+lcDate = '20230928'
 
 With m.toUpdateObject
-	.VersionNumber    = '3.51 - ' + lcDate
+	.VersionNumber    = '3.51.01 - ' + lcDate
 	.AppID            = 'ObjectExplorer'
 
-	.AvailableVersion = 'Object Explorer-3.51-08629-' + lcDate
+	.AvailableVersion = 'Object Explorer-3.51.01-08671-' + lcDate
 	.RegisterWithThor = GetRegisterWithThor(.ApplicationName)
 	.Notes			  = GetReleaseNotes()
 Endwith
@@ -293,6 +293,10 @@ Endproc
 Procedure GetReleaseNotes
 
 Text to lcNote NoShow
+
+### 2023-09-28, Version 3.51.01
+
+Fix bug if called with object based on Empty class
 
 ### 2023-08-17, Version 3.51
 
